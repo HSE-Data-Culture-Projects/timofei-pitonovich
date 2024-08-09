@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "mainTitle": "Data Culture",
+  "mainDigitalLiteracyExam": "Digital Literacy",
+  "mainProgrammingExam": "Programming",
+  "mainDataAnalysisExam": "Data Analysis",
+  "mainSolveButtonText": "Practice!",
+  "mainGigachatButtonText": "Gigachat!",
+  "mainFavoritesButtonText": "Favourites",
+  "mainErrorsButtonText": "Mistakes"
+}

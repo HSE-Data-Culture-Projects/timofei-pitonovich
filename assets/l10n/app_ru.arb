@@ -1,0 +1,11 @@
+{
+  "@@locale": "ru",
+  "mainTitle": "Data Culture",
+  "mainDigitalLiteracyExam": "Цифровая грамотность",
+  "mainProgrammingExam": "Программирование",
+  "mainDataAnalysisExam": "Анализ данных",
+  "mainSolveButtonText": "Решайте и нули не получайте!",
+  "mainGigachatButtonText": "Гигачад!",
+  "mainFavoritesButtonText": "Избранное",
+  "mainErrorsButtonText": "Ошибки"
+}
