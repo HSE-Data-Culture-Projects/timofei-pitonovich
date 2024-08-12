@@ -7,5 +7,10 @@
   "mainSolveButtonText": "Practice!",
   "mainGigachatButtonText": "Gigachat!",
   "mainFavoritesButtonText": "Favourites",
-  "mainErrorsButtonText": "Mistakes"
+  "mainErrorsButtonText": "Mistakes",
+  "settingsPageTitle": "Settings",
+  "settingsPagePushNotifications": "Push notifications",
+  "settingsPageAiModel": "AI Model",
+  "settingsPageAppTheme": "App theme",
+  "settingsPageAppLanguage": "App language"
 }

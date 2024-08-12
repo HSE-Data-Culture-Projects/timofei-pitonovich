@@ -7,5 +7,10 @@
   "mainSolveButtonText": "Решайте и нули не получайте!",
   "mainGigachatButtonText": "Гигачад!",
   "mainFavoritesButtonText": "Избранное",
-  "mainErrorsButtonText": "Ошибки"
+  "mainErrorsButtonText": "Ошибки",
+  "settingsPageTitle": "Настройки",
+  "settingsPagePushNotifications": "Пуш-уведомления",
+  "settingsPageAiModel": "Модель ИИ",
+  "settingsPageAppTheme": "Тема приложения",
+  "settingsPageAppLanguage": "Язык приложения"
 }

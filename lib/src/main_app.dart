@@ -1,4 +1,5 @@
 import 'package:app/src/localization/app_localizations.dart';
+import 'package:app/src/services/config/config.dart';
 import 'package:app/src/services/routing/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -19,7 +20,9 @@ class MainApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      locale: ref.watch(selectedLanguageProvider),
       supportedLocales: {
+        const Locale('ru'),
         const Locale('en'),
       },
       routerConfig: router,

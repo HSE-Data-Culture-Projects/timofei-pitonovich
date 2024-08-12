@@ -31,4 +31,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mainErrorsButtonText => 'Mistakes';
+
+  @override
+  String get settingsPageTitle => 'Settings';
+
+  @override
+  String get settingsPagePushNotifications => 'Push notifications';
+
+  @override
+  String get settingsPageAiModel => 'AI Model';
+
+  @override
+  String get settingsPageAppTheme => 'App theme';
+
+  @override
+  String get settingsPageAppLanguage => 'App language';
 }

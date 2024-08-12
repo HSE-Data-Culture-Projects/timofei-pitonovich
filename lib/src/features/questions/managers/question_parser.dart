@@ -1,0 +1,144 @@
+import 'package:xml/xml.dart';
+
+import '../questions.dart';
+
+class QuestionParser {
+  List<Question> parse(String xmlString) {
+    final document = XmlDocument.parse(xmlString);
+    final questions = document.findAllElements('question');
+
+    return questions.map((question) {
+      final type = question.getAttribute('type');
+      final name = _removeHtmlTags(question
+          .findElements('name')
+          .single
+          .findElements('text')
+          .single
+          .text);
+      final questionText = _removeHtmlTags(question
+          .findElements('questiontext')
+          .single
+          .findElements('text')
+          .single
+          .text);
+      final generalFeedback = _removeHtmlTags(question
+          .findElements('generalfeedback')
+          .single
+          .findElements('text')
+          .single
+          .text);
+      final defaultGrade = double.parse(
+          question.findElements('defaultgrade').single.text.trim());
+      final penalty =
+          double.parse(question.findElements('penalty').single.text.trim());
+
+      switch (type) {
+        case 'shortanswer':
+          final answers = question.findAllElements('answer').map((answer) {
+            final text =
+                _removeHtmlTags(answer.findElements('text').single.text);
+            final feedback = _removeHtmlTags(answer
+                .findElements('feedback')
+                .single
+                .findElements('text')
+                .single
+                .text);
+            return ShortAnswer(text: text, feedback: feedback);
+          }).toList();
+          return Question.shortAnswer(
+            name: name,
+            questionText: questionText,
+            generalFeedback: generalFeedback,
+            defaultGrade: defaultGrade,
+            penalty: penalty,
+            answers: answers,
+          );
+
+        case 'truefalse':
+          final answers = question.findAllElements('answer').map((answer) {
+            final isTrue =
+                _removeHtmlTags(answer.findElements('text').single.text)
+                        .toLowerCase() ==
+                    'true';
+            final feedback = _removeHtmlTags(answer
+                .findElements('feedback')
+                .single
+                .findElements('text')
+                .single
+                .text);
+            return TrueFalseAnswer(isTrue: isTrue, feedback: feedback);
+          }).toList();
+          final correctAnswer = answers.firstWhere((answer) => answer.isTrue);
+          return Question.trueFalse(
+            name: name,
+            questionText: questionText,
+            generalFeedback: generalFeedback,
+            defaultGrade: defaultGrade,
+            penalty: penalty,
+            correctAnswer: correctAnswer,
+          );
+
+        case 'multichoice':
+          final single =
+              question.findElements('single').single.text.trim() == 'true';
+          final shuffleAnswers =
+              question.findElements('shuffleanswers').single.text.trim() ==
+                  'true';
+          final correctFeedback = _removeHtmlTags(question
+              .findElements('correctfeedback')
+              .single
+              .findElements('text')
+              .single
+              .text);
+          final partiallyCorrectFeedback = _removeHtmlTags(question
+              .findElements('partiallycorrectfeedback')
+              .single
+              .findElements('text')
+              .single
+              .text);
+          final incorrectFeedback = _removeHtmlTags(question
+              .findElements('incorrectfeedback')
+              .single
+              .findElements('text')
+              .single
+              .text);
+
+          final answers = question.findAllElements('answer').map((answer) {
+            final text =
+                _removeHtmlTags(answer.findElements('text').single.text);
+            final feedback = _removeHtmlTags(answer
+                .findElements('feedback')
+                .single
+                .findElements('text')
+                .single
+                .text);
+            final fraction = int.parse(answer.getAttribute('fraction')!);
+            return MultiChoiceAnswer(
+                text: text, feedback: feedback, fraction: fraction);
+          }).toList();
+
+          return Question.multiChoice(
+            name: name,
+            questionText: questionText,
+            generalFeedback: generalFeedback,
+            defaultGrade: defaultGrade,
+            penalty: penalty,
+            single: single,
+            shuffleAnswers: shuffleAnswers,
+            answers: answers,
+            correctFeedback: correctFeedback,
+            partiallyCorrectFeedback: partiallyCorrectFeedback,
+            incorrectFeedback: incorrectFeedback,
+          );
+
+        default:
+          throw Exception('Unsupported question type');
+      }
+    }).toList();
+  }
+
+  static String _removeHtmlTags(String text) {
+    final regex = RegExp(r'<[^>]*>', multiLine: true, caseSensitive: false);
+    return text.replaceAll(regex, '').trim();
+  }
+}

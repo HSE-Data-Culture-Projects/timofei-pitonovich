@@ -1,4 +1,5 @@
 import 'package:app/src/features/main/di/providers.dart';
+import 'package:app/src/features/topics/ui/ui.dart';
 import 'package:app/src/localization/app_localizations.dart';
 import 'package:app/src/shared/shared.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,11 @@ class _MainPageState extends ConsumerState<MainPage> {
               Center(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16.0),
-                  child: UniversalAssetImage('assets/images/gigachat.png'),
+                  child: UniversalAssetImage(
+                    'assets/images/gigachat.png',
+                    height: 204,
+                    width: 223,
+                  ),
                 ),
               ),
               const SizedBox(height: 24),
@@ -58,11 +63,13 @@ class _MainPageState extends ConsumerState<MainPage> {
                       progress: 0.3,
                     ),
                   ),
+                  SizedBox(width: 8),
                   Expanded(
                     child: _ProgressWidget(
                       progress: 0.56,
                     ),
                   ),
+                  SizedBox(width: 8),
                   Expanded(
                     child: _ProgressWidget(
                       progress: 0.75,
@@ -100,7 +107,13 @@ class _MainPageState extends ConsumerState<MainPage> {
               const SizedBox(height: 24),
               DcElevatedButton(
                 text: locale.mainSolveButtonText,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const TopicPage(),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 8),
               Row(
@@ -151,14 +164,14 @@ class _ProgressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-      height: 48,
-      padding: const EdgeInsets.all(10),
-      child: HorizontalRateIndicator(
-        value: progress,
-        fillColor: _color(context),
-        trackColor: context.colorScheme.secondaryGray,
-      ),
-    );
+        height: 48,
+        padding: const EdgeInsets.all(10),
+        child: HorizontalRateIndicator(
+          value: progress,
+          fillColor: _color(context),
+          trackColor: context.colorScheme.secondaryGray,
+        ),
+      );
 
   Color _color(BuildContext context) {
     if (progress <= 0.39999999) {

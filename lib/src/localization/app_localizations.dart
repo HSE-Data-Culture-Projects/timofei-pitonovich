@@ -143,6 +143,36 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Ошибки'**
   String get mainErrorsButtonText;
+
+  /// No description provided for @settingsPageTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Настройки'**
+  String get settingsPageTitle;
+
+  /// No description provided for @settingsPagePushNotifications.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пуш-уведомления'**
+  String get settingsPagePushNotifications;
+
+  /// No description provided for @settingsPageAiModel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Модель ИИ'**
+  String get settingsPageAiModel;
+
+  /// No description provided for @settingsPageAppTheme.
+  ///
+  /// In ru, this message translates to:
+  /// **'Тема приложения'**
+  String get settingsPageAppTheme;
+
+  /// No description provided for @settingsPageAppLanguage.
+  ///
+  /// In ru, this message translates to:
+  /// **'Язык приложения'**
+  String get settingsPageAppLanguage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
