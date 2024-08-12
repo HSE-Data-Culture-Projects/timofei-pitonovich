@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
 
+import '../../features/topics/topics.dart';
+
 /// Список доступных в приложении языков.
 const availableLanguages = <String, Locale>{
   'Русский': Locale('ru'),
@@ -61,3 +63,49 @@ const testXml = '''
 </quiz>
 
 ''';
+
+final exams = <Exam>[
+  const Exam(
+    name: 'Цифровая грамотность',
+    topics: <Topic>[
+      Topic(
+        name: 'Тема 1',
+        id: 1,
+      ),
+      Topic(
+        name: 'Тема 2',
+        id: 2,
+      ),
+    ],
+  ),
+  const Exam(
+    name: 'Программирование',
+    topics: <Topic>[
+      Topic(
+        name: 'Тема 1',
+        id: 3,
+      ),
+      Topic(
+        name: 'Тема 2',
+        id: 4,
+      ),
+    ],
+  ),
+  const Exam(
+    name: 'Анализ данных',
+    topics: <Topic>[
+      Topic(
+        name: 'Тема 1',
+        id: 5,
+      ),
+      Topic(
+        name: 'Тема 2',
+        id: 6,
+      ),
+      Topic(
+        name: 'Тема 3',
+        id: 7,
+      ),
+    ],
+  ),
+];

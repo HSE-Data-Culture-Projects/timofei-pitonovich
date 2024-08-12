@@ -1,6 +1,7 @@
 import 'package:app/src/features/main/di/providers.dart';
 import 'package:app/src/features/topics/ui/ui.dart';
 import 'package:app/src/localization/app_localizations.dart';
+import 'package:app/src/services/config/config.dart';
 import 'package:app/src/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -108,9 +109,30 @@ class _MainPageState extends ConsumerState<MainPage> {
               DcElevatedButton(
                 text: locale.mainSolveButtonText,
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const TopicPage(),
+                  DcAlertDialog.show(
+                    context: context,
+                    title: 'Выберите экзамен',
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: exams
+                          .map(
+                            (e) => Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: DcElevatedButton(
+                                text: e.name,
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => TopicPage(
+                                        exam: e,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          )
+                          .toList(),
                     ),
                   );
                 },
