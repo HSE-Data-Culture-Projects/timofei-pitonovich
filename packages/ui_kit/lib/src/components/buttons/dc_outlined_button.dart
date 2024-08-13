@@ -45,10 +45,10 @@ class DcOutlinedButton extends StatelessWidget {
   Color _getBackgroundColor(BuildContext context) {
     switch (buttonState) {
       case ButtonState.disabled:
-        return context.colorScheme.neutralBlue2.withOpacity(0.5);
+        return context.colorScheme.primary.withOpacity(0.5);
       case ButtonState.loading:
         return color?.withOpacity(0.5) ??
-            context.colorScheme.neutralBlue2.withOpacity(0.5);
+            context.colorScheme.primary.withOpacity(0.5);
       default:
         return Colors.transparent;
     }
@@ -56,9 +56,9 @@ class DcOutlinedButton extends StatelessWidget {
 
   Color _getBorderColor(BuildContext context) {
     if (buttonState == ButtonState.disabled) {
-      return context.colorScheme.neutralBlue2;
+      return context.colorScheme.primary.withOpacity(0.5);
     } else {
-      return color ?? context.colorScheme.primaryBlue;
+      return color ?? context.colorScheme.primary;
     }
   }
 
@@ -92,7 +92,7 @@ class DcOutlinedButton extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: context.fontsTheme.dcBodyLarge.copyWith(
-            color: context.colorScheme.primaryBlue,
+            color: context.textColorScheme.secondary,
           ),
         ),
       );
@@ -109,7 +109,7 @@ class DcOutlinedButton extends StatelessWidget {
               text,
               textAlign: TextAlign.center,
               style: context.fontsTheme.dcBodyLarge.copyWith(
-                color: context.colorScheme.primaryBlue,
+                color: context.textColorScheme.secondary,
               ),
             ),
           ],

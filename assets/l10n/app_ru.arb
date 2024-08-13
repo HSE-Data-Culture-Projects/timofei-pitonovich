@@ -12,5 +12,7 @@
   "settingsPagePushNotifications": "Пуш-уведомления",
   "settingsPageAiModel": "Модель ИИ",
   "settingsPageAppTheme": "Тема приложения",
+  "settingsPageLightTheme": "Светлая",
+  "settingsPageDarkTheme": "Тёмная",
   "settingsPageAppLanguage": "Язык приложения"
 }

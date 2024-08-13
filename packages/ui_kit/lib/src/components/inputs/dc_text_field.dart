@@ -144,10 +144,10 @@ class _DcTextFieldState extends State<DcTextField>
     if (_textColor == null &&
         _initialBorderColor == null &&
         _borderColor == null) {
-      _textColor = context.colorScheme.secondaryDarkGray;
+      _textColor = context.colorScheme.secondary;
       _initialBorderColor = switch (widget.state) {
-        DcInputFieldState.error => context.colorScheme.errorRed,
-        _ => context.colorScheme.secondaryGray,
+        DcInputFieldState.error => context.colorScheme.negative,
+        _ => context.colorScheme.secondary,
       };
       _borderColor = _initialBorderColor;
     }
@@ -158,8 +158,8 @@ class _DcTextFieldState extends State<DcTextField>
     super.didUpdateWidget(oldWidget);
     if (oldWidget.state != widget.state) {
       _initialBorderColor = switch (widget.state) {
-        DcInputFieldState.error => context.colorScheme.errorRed,
-        _ => context.colorScheme.secondaryGray,
+        DcInputFieldState.error => context.colorScheme.negative,
+        _ => context.colorScheme.secondary,
       };
       _borderColor = _initialBorderColor;
     }
@@ -180,7 +180,7 @@ class _DcTextFieldState extends State<DcTextField>
   void changeBorderColor() {
     if (_focusNode.hasFocus) {
       setState(() {
-        _borderColor = context.colorScheme.primaryBlue;
+        _borderColor = context.colorScheme.primary;
       });
     } else {
       setState(() {
@@ -241,8 +241,7 @@ class _DcTextFieldState extends State<DcTextField>
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(18),
                         border: Border.all(
-                          color:
-                              _borderColor ?? context.colorScheme.secondaryGray,
+                          color: _borderColor ?? context.colorScheme.secondary,
                         ),
                       ),
                       child: SizedBox(
@@ -288,7 +287,7 @@ class _DcTextFieldState extends State<DcTextField>
                   Text(
                     widget.errorText!,
                     style: context.fontsTheme.dcLabelMedium.copyWith(
-                      color: context.colorScheme.errorRed,
+                      color: context.colorScheme.negative,
                     ),
                   )
               ],

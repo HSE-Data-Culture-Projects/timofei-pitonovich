@@ -61,11 +61,11 @@ class DcElevatedButton extends StatelessWidget {
   Color _getBackgroundColor(BuildContext context) {
     switch (buttonState) {
       case ButtonState.disabled:
-        return context.colorScheme.neutralBlue2;
+        return context.colorScheme.primary.withOpacity(0.5);
       case ButtonState.loading:
-        return color ?? context.colorScheme.neutralBlue2;
+        return color ?? context.colorScheme.primary.withOpacity(0.75);
       default:
-        return color ?? context.colorScheme.primaryBlue;
+        return color ?? context.colorScheme.primary;
     }
   }
 
@@ -99,7 +99,7 @@ class DcElevatedButton extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: context.fontsTheme.dcBodyLarge.copyWith(
-            color: context.colorScheme.primaryWhite,
+            color: context.textColorScheme.contrast,
           ),
         ),
       );
@@ -116,7 +116,7 @@ class DcElevatedButton extends StatelessWidget {
             text,
             textAlign: TextAlign.center,
             style: context.fontsTheme.dcBodyLarge.copyWith(
-              color: context.colorScheme.primaryWhite,
+              color: context.textColorScheme.contrast,
             ),
           ),
         ],

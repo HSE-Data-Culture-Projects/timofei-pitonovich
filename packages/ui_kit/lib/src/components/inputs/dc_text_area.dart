@@ -62,16 +62,16 @@ class _DcTextAreaState extends State<DcTextArea>
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(
-              color: context.colorScheme.secondaryGray,
+              color: context.colorScheme.secondary,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(color: context.colorScheme.primaryBlue),
+            borderSide: BorderSide(color: context.colorScheme.primary),
           ),
           hintText: widget.label,
           hintStyle: context.fontsTheme.dcBodyLarge.copyWith(
-            color: context.colorScheme.secondaryDarkGray,
+            color: context.colorScheme.secondary,
           ),
           fillColor: Colors.transparent,
           filled: true,

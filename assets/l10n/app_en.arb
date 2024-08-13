@@ -12,5 +12,7 @@
   "settingsPagePushNotifications": "Push notifications",
   "settingsPageAiModel": "AI Model",
   "settingsPageAppTheme": "App theme",
+  "settingsPageLightTheme": "Light",
+  "settingsPageDarkTheme": "Dark",
   "settingsPageAppLanguage": "App language"
 }

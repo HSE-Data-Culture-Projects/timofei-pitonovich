@@ -168,6 +168,18 @@ abstract class AppLocalizations {
   /// **'Тема приложения'**
   String get settingsPageAppTheme;
 
+  /// No description provided for @settingsPageLightTheme.
+  ///
+  /// In ru, this message translates to:
+  /// **'Светлая'**
+  String get settingsPageLightTheme;
+
+  /// No description provided for @settingsPageDarkTheme.
+  ///
+  /// In ru, this message translates to:
+  /// **'Тёмная'**
+  String get settingsPageDarkTheme;
+
   /// No description provided for @settingsPageAppLanguage.
   ///
   /// In ru, this message translates to:

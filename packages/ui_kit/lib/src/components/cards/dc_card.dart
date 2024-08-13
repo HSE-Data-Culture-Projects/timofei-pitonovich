@@ -17,10 +17,10 @@ class DcCard extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: context.colorScheme.primaryWhite,
+        color: context.colorScheme.background,
         boxShadow: [
           BoxShadow(
-            color: context.colorScheme.secondaryDarkGray.withOpacity(0.15),
+            color: context.colorScheme.secondary.withOpacity(0.15),
             offset: const Offset(0, 4),
             blurRadius: 12,
           ),

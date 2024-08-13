@@ -165,7 +165,7 @@ class _MainPageState extends ConsumerState<MainPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: context.colorScheme.secondaryDarkGray,
+        backgroundColor: context.colorScheme.secondary,
         onPressed: () {},
         shape: const CircleBorder(),
         child: ClipRRect(
@@ -191,17 +191,17 @@ class _ProgressWidget extends StatelessWidget {
         child: HorizontalRateIndicator(
           value: progress,
           fillColor: _color(context),
-          trackColor: context.colorScheme.secondaryGray,
+          trackColor: context.colorScheme.secondary,
         ),
       );
 
   Color _color(BuildContext context) {
     if (progress <= 0.39999999) {
-      return context.colorScheme.errorRed;
+      return context.colorScheme.negative;
     }
     if (progress <= 0.59999999) {
-      return context.colorScheme.attentionYellow;
+      return context.colorScheme.warning;
     }
-    return context.colorScheme.attentionGreen;
+    return context.colorScheme.positive;
   }
 }

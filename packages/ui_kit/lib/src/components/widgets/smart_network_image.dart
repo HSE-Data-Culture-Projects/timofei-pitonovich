@@ -32,7 +32,7 @@ class DcSmartNetworkImage extends StatelessWidget {
         placeholderBuilder: (_) => Container(
           width: width,
           height: height,
-          color: context.colorScheme.secondaryDarkGray,
+          color: context.colorScheme.secondary,
         ),
       );
     }
@@ -44,7 +44,7 @@ class DcSmartNetworkImage extends StatelessWidget {
       placeholder: (context, _) => Container(
         width: width,
         height: height,
-        color: context.colorScheme.secondaryDarkGray,
+        color: context.colorScheme.secondary,
       ),
       errorWidget: errorBuilder ??
           (_, __, ___) => BrokenImageContainer(
@@ -74,7 +74,7 @@ class BrokenImageContainer extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      color: context.colorScheme.primaryLightGray,
+      color: context.colorScheme.secondary,
       alignment: Alignment.center,
       child: const Icon(Icons.broken_image_outlined),
     );

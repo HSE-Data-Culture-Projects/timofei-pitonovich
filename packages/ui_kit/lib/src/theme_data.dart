@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ui_kit/src/color_schemas/color_schemas.dart';
+import 'package:ui_kit/src/color_schemas/text_color_scheme.dart';
 import 'package:ui_kit/src/fonts/fonts.dart';
 import 'package:ui_kit/ui_kit.dart';
 
@@ -8,30 +9,22 @@ import 'package:ui_kit/ui_kit.dart';
 abstract interface class DcThemeData {
   /// Светлая тема из UI Kit.
   static ThemeData get light {
-    const textColorScheme = DcColorPalette(
-      primaryWhite: Color(0xFFFFFFFF),
-      primaryLightGray: Color(0xFFF1F1F8),
-      primaryBlue: Color(0xFF003CFF),
-      primaryBlack: Color(0xFF000000),
-      secondaryDarkGray: Color(0xFF95969D),
-      secondaryGray: Color(0xFFE4E4E4),
-      secondaryGray1: Color(0xFFF2F5FF),
-      secondaryBlue1: Color(0xFF4873FF),
-      tertiaryBlack: Color.fromRGBO(0, 0, 0, 0.6),
-      tertiaryBlue: Color.fromRGBO(0, 60, 255, 0.1),
-      attentionCornflower: Color(0xFF30A6E9),
-      attentionViolet: Color(0xFF8791ED),
-      attentionMagenta: Color(0xFFAE59C6),
-      attentionGreen: Color(0xFF1BD2A4),
-      attentionYellow: Color(0xFFF1B031),
-      attentionOrange: Color(0xFFFF6E01),
-      neutralRed1: Color(0xFFFCBFBF),
-      neutralBlue2: Color(0xFFB8C8FF),
-      neutralCornflower1: Color(0xFFD6EDFB),
-      neutralCornflower2: Color(0xFFE7F3FA),
-      neutralViolet1: Color(0xFFE7E9FB),
-      neutralViolet2: Color(0xFFEFF1FA),
-      errorRed: Color(0xFFF42829),
+    const textColorScheme = DcTextColorScheme(
+      primary: Color(0xFF292D34),
+      secondary: Color(0xFF2300FA),
+      contrast: Color(0xFFFFFFFF),
+      positive: Color(0xFF46B952),
+      warning: Color(0xFFFFD12D),
+      negative: Color(0xFFFF5741),
+    );
+
+    const colorScheme = DcColorScheme(
+      primary: Color(0xFF2300FA),
+      background: Color(0xFFFFFFFF),
+      secondary: Color(0xFFCCD8FF),
+      positive: Color(0xFF46B952),
+      warning: Color(0xFFFFD12D),
+      negative: Color(0xFFFF5741),
     );
 
     final fontsTheme = DcFontsTheme(
@@ -40,7 +33,7 @@ abstract interface class DcThemeData {
           fontSize: 96,
           fontWeight: FontWeight.w700,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
       dcDisplayMedium: GoogleFonts.nunitoSans(
@@ -48,7 +41,7 @@ abstract interface class DcThemeData {
           fontSize: 48,
           fontWeight: FontWeight.w700,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
       dcDisplaySmall: GoogleFonts.nunitoSans(
@@ -56,7 +49,7 @@ abstract interface class DcThemeData {
           fontSize: 32,
           fontWeight: FontWeight.w700,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
       dcHeadlineLarge: GoogleFonts.nunitoSans(
@@ -64,7 +57,7 @@ abstract interface class DcThemeData {
           fontSize: 27,
           fontWeight: FontWeight.w700,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
       dcHeadlineMedium: GoogleFonts.nunitoSans(
@@ -72,7 +65,7 @@ abstract interface class DcThemeData {
           fontSize: 18,
           fontWeight: FontWeight.w700,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
       dcHeadlineSmall: GoogleFonts.nunitoSans(
@@ -80,7 +73,7 @@ abstract interface class DcThemeData {
           fontSize: 16,
           fontWeight: FontWeight.w700,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
       dcTitleLarge: GoogleFonts.nunitoSans(
@@ -88,7 +81,7 @@ abstract interface class DcThemeData {
           fontSize: 24,
           fontWeight: FontWeight.w600,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
       dcBodyLarge: GoogleFonts.nunitoSans(
@@ -96,7 +89,7 @@ abstract interface class DcThemeData {
           fontSize: 16,
           fontWeight: FontWeight.w600,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
       dcBodyMedium: GoogleFonts.nunitoSans(
@@ -104,7 +97,7 @@ abstract interface class DcThemeData {
           fontSize: 16,
           fontWeight: FontWeight.w400,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
       dcLabelLarge: GoogleFonts.nunitoSans(
@@ -112,7 +105,7 @@ abstract interface class DcThemeData {
           fontSize: 13,
           fontWeight: FontWeight.w600,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
       dcLabelMedium: GoogleFonts.nunitoSans(
@@ -120,7 +113,7 @@ abstract interface class DcThemeData {
           fontSize: 12,
           fontWeight: FontWeight.w600,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
       dcLabelSmall: GoogleFonts.nunitoSans(
@@ -128,14 +121,15 @@ abstract interface class DcThemeData {
           fontSize: 11,
           fontWeight: FontWeight.w600,
           height: 1.2,
-          color: textColorScheme.primaryBlack,
+          color: textColorScheme.primary,
         ),
       ),
     );
 
     return DcThemeData._fromBase(
       _lightBaseTheme,
-      colorScheme: textColorScheme,
+      textColorScheme: textColorScheme,
+      colorScheme: colorScheme,
       fontsTheme: fontsTheme,
       extensions: const [],
     );
@@ -143,26 +137,18 @@ abstract interface class DcThemeData {
 
   static ThemeData _fromBase(
     ThemeData baseTheme, {
-    required DcColorPalette colorScheme,
+    required DcTextColorScheme textColorScheme,
+    required DcColorScheme colorScheme,
     required DcFontsTheme fontsTheme,
     List<ThemeExtension> extensions = const [],
   }) {
     return baseTheme.copyWith(
       textTheme: fontsTheme.toTextTheme(),
-      colorScheme:
-          baseTheme.colorScheme.copyWith(primary: colorScheme.primaryBlue),
-      scrollbarTheme: ScrollbarThemeData(
-        thickness: WidgetStateProperty.all(8),
-        radius: const Radius.circular(100),
-        thumbColor: WidgetStateProperty.all(colorScheme.neutralBlue2),
-        trackBorderColor: WidgetStateProperty.all(colorScheme.neutralBlue2),
-        trackColor: WidgetStateProperty.all(colorScheme.neutralBlue2),
-        mainAxisMargin: 8,
-      ),
-      scaffoldBackgroundColor: colorScheme.primaryLightGray,
+      colorScheme: baseTheme.colorScheme.copyWith(primary: colorScheme.primary),
+      scaffoldBackgroundColor: colorScheme.background,
       dropdownMenuTheme: DropdownMenuThemeData(
         textStyle: fontsTheme.dcLabelSmall.copyWith(
-          color: colorScheme.primaryBlack,
+          color: colorScheme.primary,
         ),
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
@@ -180,14 +166,15 @@ abstract interface class DcThemeData {
             ),
           ),
           side: WidgetStatePropertyAll(
-            BorderSide(color: colorScheme.primaryBlue),
+            BorderSide(color: colorScheme.primary),
           ),
           backgroundColor: WidgetStatePropertyAll<Color>(
-            colorScheme.primaryWhite,
+            colorScheme.background,
           ),
         ),
       ),
       extensions: [
+        textColorScheme,
         colorScheme,
         fontsTheme,
         ...extensions,
@@ -195,5 +182,134 @@ abstract interface class DcThemeData {
     );
   }
 
+  static ThemeData get dark {
+    const textColorScheme = DcTextColorScheme(
+      primary: Color(0xFFFFFFFF),
+      secondary: Color(0xFFDCFF05),
+      contrast: Color(0xFF2C2C2C),
+      positive: Color(0xFF46B952),
+      warning: Color(0xFFFFD12D),
+      negative: Color(0xFFFF5741),
+    );
+
+    const colorScheme = DcColorScheme(
+      primary: Color(0xFFDCFF05),
+      background: Color(0xFF2C2C2C),
+      secondary: Color(0xFF444444),
+      positive: Color(0xFF46B952),
+      warning: Color(0xFFFFD12D),
+      negative: Color(0xFFFF5741),
+    );
+
+    final fontsTheme = DcFontsTheme(
+      dcDisplayLarge: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 96,
+          fontWeight: FontWeight.w700,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+      dcDisplayMedium: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 48,
+          fontWeight: FontWeight.w700,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+      dcDisplaySmall: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 32,
+          fontWeight: FontWeight.w700,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+      dcHeadlineLarge: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 27,
+          fontWeight: FontWeight.w700,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+      dcHeadlineMedium: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+      dcHeadlineSmall: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+      dcTitleLarge: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+      dcBodyLarge: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+      dcBodyMedium: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+      dcLabelLarge: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w600,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+      dcLabelMedium: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+      dcLabelSmall: GoogleFonts.nunitoSans(
+        textStyle: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          height: 1.2,
+          color: textColorScheme.primary,
+        ),
+      ),
+    );
+
+    return DcThemeData._fromBase(
+      _darkBaseTheme,
+      textColorScheme: textColorScheme,
+      colorScheme: colorScheme,
+      fontsTheme: fontsTheme,
+      extensions: const [],
+    );
+  }
+
   static final ThemeData _lightBaseTheme = ThemeData.light();
+
+  static final ThemeData _darkBaseTheme = ThemeData.dark();
 }

@@ -25,8 +25,12 @@ final selectedAIModelProvider = StateProvider<String>((ref) => 'Gigachat');
 /// Список доступных в приложении цветовых тем.
 final availableThemes = <ThemeData>[
   DcThemeData.light,
-  DcThemeData.light,
+  DcThemeData.dark,
 ];
+
+final selectedThemeProvider = StateProvider<ThemeData>(
+  (ref) => availableThemes[0],
+);
 
 const testXml = '''
 <?xml version="1.0" encoding="UTF-8"?>

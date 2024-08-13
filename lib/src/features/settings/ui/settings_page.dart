@@ -17,7 +17,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final locale = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: context.colorScheme.primaryLightGray,
+        backgroundColor: context.colorScheme.background,
         title: Text(
           locale.settingsPageTitle,
           style: context.fontsTheme.dcHeadlineMedium,
@@ -77,25 +77,29 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   locale.settingsPageAppTheme,
                   style: context.fontsTheme.dcHeadlineMedium,
                 ),
-                DropdownButton(
-                  value: 1,
-                  items: <DropdownMenuItem>[
-                    DropdownMenuItem(
-                      value: 1,
+                DropdownButton<ThemeData>(
+                  value: ref.watch(selectedThemeProvider),
+                  items: <DropdownMenuItem<ThemeData>>[
+                    DropdownMenuItem<ThemeData>(
+                      value: availableThemes[0],
                       child: Text(
-                        'Светлая',
+                        locale.settingsPageLightTheme,
                         style: context.fontsTheme.dcBodyMedium,
                       ),
                     ),
-                    DropdownMenuItem(
-                      value: 2,
+                    DropdownMenuItem<ThemeData>(
+                      value: availableThemes[1],
                       child: Text(
-                        'Тёмная',
+                        locale.settingsPageDarkTheme,
                         style: context.fontsTheme.dcBodyMedium,
                       ),
                     ),
                   ],
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    if (value != null) {
+                      ref.read(selectedThemeProvider.notifier).state = value;
+                    }
+                  },
                 ),
               ],
             ),
