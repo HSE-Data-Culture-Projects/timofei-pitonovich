@@ -146,6 +146,9 @@ abstract interface class DcThemeData {
       textTheme: fontsTheme.toTextTheme(),
       colorScheme: baseTheme.colorScheme.copyWith(primary: colorScheme.primary),
       scaffoldBackgroundColor: colorScheme.background,
+      appBarTheme: AppBarTheme(
+        backgroundColor: colorScheme.background,
+      ),
       dropdownMenuTheme: DropdownMenuThemeData(
         textStyle: fontsTheme.dcLabelSmall.copyWith(
           color: colorScheme.primary,
