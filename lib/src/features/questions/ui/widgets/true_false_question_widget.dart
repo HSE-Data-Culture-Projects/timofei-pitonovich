@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-
+import 'package:ui_kit/ui_kit.dart';
 import '../../questions.dart';
 
 class TrueFalseQuestionWidget extends StatefulWidget {
   final TrueFalseQuestion question;
+  final void Function(bool answer) onAnswerSelected;
+  final VoidCallback onCheckAnswer;
 
-  const TrueFalseQuestionWidget({Key? key, required this.question})
-      : super(key: key);
+  const TrueFalseQuestionWidget({
+    Key? key,
+    required this.question,
+    required this.onAnswerSelected,
+    required this.onCheckAnswer,
+  }) : super(key: key);
 
   @override
   State<TrueFalseQuestionWidget> createState() =>
@@ -22,33 +28,40 @@ class _TrueFalseQuestionWidgetState extends State<TrueFalseQuestionWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(widget.question.name,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        SizedBox(height: 10),
-        Text(widget.question.questionText, style: TextStyle(fontSize: 16)),
-        SizedBox(height: 20),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 10),
+        Text(widget.question.questionText, style: const TextStyle(fontSize: 16)),
+        const SizedBox(height: 20),
         RadioListTile<bool>(
-          title: Text('True'),
+          title: const Text('True'),
           value: true,
           groupValue: _selectedValue,
           onChanged: (value) {
             setState(() {
               _selectedValue = value;
             });
+            widget.onAnswerSelected(value!);
           },
         ),
         RadioListTile<bool>(
-          title: Text('False'),
+          title: const Text('False'),
           value: false,
           groupValue: _selectedValue,
           onChanged: (value) {
             setState(() {
               _selectedValue = value;
             });
+            widget.onAnswerSelected(value!);
           },
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
+        DcElevatedButton(
+          onPressed: widget.onCheckAnswer,
+          text: 'Проверить ответ',
+        ),
+        const SizedBox(height: 20),
         Text("Feedback: ${widget.question.generalFeedback}",
-            style: TextStyle(color: Colors.grey)),
+            style: const TextStyle(color: Colors.grey)),
       ],
     );
   }

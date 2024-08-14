@@ -14,35 +14,35 @@ class QuestionParser {
           .single
           .findElements('text')
           .single
-          .text);
+          .innerText);
       final questionText = _removeHtmlTags(question
           .findElements('questiontext')
           .single
           .findElements('text')
           .single
-          .text);
+          .innerText);
       final generalFeedback = _removeHtmlTags(question
           .findElements('generalfeedback')
           .single
           .findElements('text')
           .single
-          .text);
+          .innerText);
       final defaultGrade = double.parse(
-          question.findElements('defaultgrade').single.text.trim());
-      final penalty =
-          double.parse(question.findElements('penalty').single.text.trim());
+          question.findElements('defaultgrade').single.innerText.trim());
+      final penalty = double.parse(
+          question.findElements('penalty').single.innerText.trim());
 
       switch (type) {
         case 'shortanswer':
           final answers = question.findAllElements('answer').map((answer) {
             final text =
-                _removeHtmlTags(answer.findElements('text').single.text);
+                _removeHtmlTags(answer.findElements('text').single.innerText);
             final feedback = _removeHtmlTags(answer
                 .findElements('feedback')
                 .single
                 .findElements('text')
                 .single
-                .text);
+                .innerText);
             return ShortAnswer(text: text, feedback: feedback);
           }).toList();
           return Question.shortAnswer(
@@ -57,7 +57,7 @@ class QuestionParser {
         case 'truefalse':
           final answers = question.findAllElements('answer').map((answer) {
             final isTrue =
-                _removeHtmlTags(answer.findElements('text').single.text)
+                _removeHtmlTags(answer.findElements('text').single.innerText)
                         .toLowerCase() ==
                     'true';
             final feedback = _removeHtmlTags(answer
@@ -65,7 +65,7 @@ class QuestionParser {
                 .single
                 .findElements('text')
                 .single
-                .text);
+                .innerText);
             return TrueFalseAnswer(isTrue: isTrue, feedback: feedback);
           }).toList();
           final correctAnswer = answers.firstWhere((answer) => answer.isTrue);
@@ -80,38 +80,38 @@ class QuestionParser {
 
         case 'multichoice':
           final single =
-              question.findElements('single').single.text.trim() == 'true';
+              question.findElements('single').single.innerText.trim() == 'true';
           final shuffleAnswers =
-              question.findElements('shuffleanswers').single.text.trim() ==
+              question.findElements('shuffleanswers').single.innerText.trim() ==
                   'true';
           final correctFeedback = _removeHtmlTags(question
               .findElements('correctfeedback')
               .single
               .findElements('text')
               .single
-              .text);
+              .innerText);
           final partiallyCorrectFeedback = _removeHtmlTags(question
               .findElements('partiallycorrectfeedback')
               .single
               .findElements('text')
               .single
-              .text);
+              .innerText);
           final incorrectFeedback = _removeHtmlTags(question
               .findElements('incorrectfeedback')
               .single
               .findElements('text')
               .single
-              .text);
+              .innerText);
 
           final answers = question.findAllElements('answer').map((answer) {
             final text =
-                _removeHtmlTags(answer.findElements('text').single.text);
+                _removeHtmlTags(answer.findElements('text').single.innerText);
             final feedback = _removeHtmlTags(answer
                 .findElements('feedback')
                 .single
                 .findElements('text')
                 .single
-                .text);
+                .innerText);
             final fraction = int.parse(answer.getAttribute('fraction')!);
             return MultiChoiceAnswer(
                 text: text, feedback: feedback, fraction: fraction);

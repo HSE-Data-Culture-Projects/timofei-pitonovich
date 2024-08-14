@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
-
+import 'package:ui_kit/ui_kit.dart';
 import '../../questions.dart';
 
 class MultiChoiceQuestionWidget extends StatefulWidget {
   final MultichoiceQuestion question;
+  final void Function(dynamic answer) onAnswerSelected;
+  final VoidCallback onCheckAnswer;
 
-  const MultiChoiceQuestionWidget({Key? key, required this.question})
-      : super(key: key);
+  const MultiChoiceQuestionWidget({
+    Key? key,
+    required this.question,
+    required this.onAnswerSelected,
+    required this.onCheckAnswer,
+  }) : super(key: key);
 
   @override
   State<MultiChoiceQuestionWidget> createState() =>
       _MultiChoiceQuestionWidgetState();
 }
 
-class _MultiChoiceQuestionWidgetState extends State<MultiChoiceQuestionWidget> {
+class _MultiChoiceQuestionWidgetState
+    extends State<MultiChoiceQuestionWidget> {
   List<bool> _selectedValues = [];
 
   @override
@@ -29,10 +36,10 @@ class _MultiChoiceQuestionWidgetState extends State<MultiChoiceQuestionWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(widget.question.name,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        SizedBox(height: 10),
-        Text(widget.question.questionText, style: TextStyle(fontSize: 16)),
-        SizedBox(height: 20),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 10),
+        Text(widget.question.questionText, style: const TextStyle(fontSize: 16)),
+        const SizedBox(height: 20),
         ...List.generate(widget.question.answers.length, (index) {
           final answer = widget.question.answers[index];
           return widget.question.single
@@ -46,6 +53,7 @@ class _MultiChoiceQuestionWidgetState extends State<MultiChoiceQuestionWidget> {
                         _selectedValues[i] = i == index;
                       }
                     });
+                    widget.onAnswerSelected(answer);
                   },
                 )
               : CheckboxListTile(
@@ -55,18 +63,24 @@ class _MultiChoiceQuestionWidgetState extends State<MultiChoiceQuestionWidget> {
                     setState(() {
                       _selectedValues[index] = value!;
                     });
+                    widget.onAnswerSelected(answer);
                   },
                 );
         }),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
+        DcElevatedButton(
+          onPressed: widget.onCheckAnswer,
+          text: 'Проверить ответ',
+        ),
+        const SizedBox(height: 20),
         Text("Feedback: ${widget.question.generalFeedback}",
-            style: TextStyle(color: Colors.grey)),
+            style: const TextStyle(color: Colors.grey)),
         if (!widget.question.single) ...[
           Text(
               "Partially Correct Feedback: ${widget.question.partiallyCorrectFeedback}",
-              style: TextStyle(color: Colors.grey)),
+              style: const TextStyle(color: Colors.grey)),
           Text("Incorrect Feedback: ${widget.question.incorrectFeedback}",
-              style: TextStyle(color: Colors.grey)),
+              style: const TextStyle(color: Colors.grey)),
         ],
       ],
     );
