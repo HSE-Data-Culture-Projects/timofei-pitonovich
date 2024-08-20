@@ -20,6 +20,7 @@ Exam _$ExamFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Exam {
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<Topic> get topics => throw _privateConstructorUsedError;
 
@@ -37,7 +38,7 @@ abstract class $ExamCopyWith<$Res> {
   factory $ExamCopyWith(Exam value, $Res Function(Exam) then) =
       _$ExamCopyWithImpl<$Res, Exam>;
   @useResult
-  $Res call({String name, List<Topic> topics});
+  $Res call({String id, String name, List<Topic> topics});
 }
 
 /// @nodoc
@@ -55,10 +56,15 @@ class _$ExamCopyWithImpl<$Res, $Val extends Exam>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? topics = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -78,7 +84,7 @@ abstract class _$$ExamImplCopyWith<$Res> implements $ExamCopyWith<$Res> {
       __$$ExamImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, List<Topic> topics});
+  $Res call({String id, String name, List<Topic> topics});
 }
 
 /// @nodoc
@@ -93,10 +99,15 @@ class __$$ExamImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? topics = null,
   }) {
     return _then(_$ExamImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -112,16 +123,22 @@ class __$$ExamImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExamImpl implements _Exam {
-  const _$ExamImpl({required this.name, required final List<Topic> topics})
+  const _$ExamImpl(
+      {required this.id,
+      required this.name,
+      final List<Topic> topics = const []})
       : _topics = topics;
 
   factory _$ExamImpl.fromJson(Map<String, dynamic> json) =>
       _$$ExamImplFromJson(json);
 
   @override
+  final String id;
+  @override
   final String name;
   final List<Topic> _topics;
   @override
+  @JsonKey()
   List<Topic> get topics {
     if (_topics is EqualUnmodifiableListView) return _topics;
     // ignore: implicit_dynamic_type
@@ -130,7 +147,7 @@ class _$ExamImpl implements _Exam {
 
   @override
   String toString() {
-    return 'Exam(name: $name, topics: $topics)';
+    return 'Exam(id: $id, name: $name, topics: $topics)';
   }
 
   @override
@@ -138,6 +155,7 @@ class _$ExamImpl implements _Exam {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExamImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._topics, _topics));
   }
@@ -145,7 +163,7 @@ class _$ExamImpl implements _Exam {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(_topics));
+      runtimeType, id, name, const DeepCollectionEquality().hash(_topics));
 
   /// Create a copy of Exam
   /// with the given fields replaced by the non-null parameter values.
@@ -165,11 +183,14 @@ class _$ExamImpl implements _Exam {
 
 abstract class _Exam implements Exam {
   const factory _Exam(
-      {required final String name,
-      required final List<Topic> topics}) = _$ExamImpl;
+      {required final String id,
+      required final String name,
+      final List<Topic> topics}) = _$ExamImpl;
 
   factory _Exam.fromJson(Map<String, dynamic> json) = _$ExamImpl.fromJson;
 
+  @override
+  String get id;
   @override
   String get name;
   @override

@@ -7,7 +7,7 @@ part of 'topic.dart';
 // **************************************************************************
 
 _$TopicImpl _$$TopicImplFromJson(Map<String, dynamic> json) => _$TopicImpl(
-      id: (json['id'] as num).toInt(),
+      id: json['id'] as String,
       name: json['name'] as String,
     );
 

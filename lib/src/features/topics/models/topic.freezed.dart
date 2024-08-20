@@ -20,7 +20,7 @@ Topic _$TopicFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Topic {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   /// Serializes this Topic to a JSON map.
@@ -37,7 +37,7 @@ abstract class $TopicCopyWith<$Res> {
   factory $TopicCopyWith(Topic value, $Res Function(Topic) then) =
       _$TopicCopyWithImpl<$Res, Topic>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({String id, String name});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$TopicImplCopyWith<$Res> implements $TopicCopyWith<$Res> {
       __$$TopicImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({String id, String name});
 }
 
 /// @nodoc
@@ -101,7 +101,7 @@ class __$$TopicImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -119,7 +119,7 @@ class _$TopicImpl implements _Topic {
       _$$TopicImplFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final String name;
 
@@ -158,13 +158,13 @@ class _$TopicImpl implements _Topic {
 }
 
 abstract class _Topic implements Topic {
-  const factory _Topic({required final int id, required final String name}) =
+  const factory _Topic({required final String id, required final String name}) =
       _$TopicImpl;
 
   factory _Topic.fromJson(Map<String, dynamic> json) = _$TopicImpl.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
   String get name;
 

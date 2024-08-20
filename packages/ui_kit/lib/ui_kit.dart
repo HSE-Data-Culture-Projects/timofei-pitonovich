@@ -1,4 +1,4 @@
-/// UI Kit дизайн системы StarManagement, реализованный на Flutter.
+/// UI Kit Data Culture, реализованный на Flutter.
 library;
 
 export 'src/assets/assets.dart';

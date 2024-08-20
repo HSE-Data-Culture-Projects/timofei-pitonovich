@@ -1,18 +1,28 @@
+import 'package:app/src/features/exams/exams.dart';
 import 'package:app/src/features/questions/ui/pages/questions_page.dart';
-import 'package:app/src/features/topics/topics.dart';
+import 'package:app/src/features/topics/di/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
 
-class TopicPage extends StatefulWidget {
+class TopicPage extends ConsumerStatefulWidget {
   const TopicPage({super.key, required this.exam});
 
   final Exam exam;
 
   @override
-  State<TopicPage> createState() => _TopicPageState();
+  ConsumerState<TopicPage> createState() => _TopicPageState();
 }
 
-class _TopicPageState extends State<TopicPage> {
+class _TopicPageState extends ConsumerState<TopicPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(topicsManagerProvider).getTopicsByExamId(widget.exam.id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,24 +33,32 @@ class _TopicPageState extends State<TopicPage> {
         ),
         backgroundColor: context.colorScheme.background,
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        children: <Widget>[
-          for (final topic in widget.exam.topics) ...<Widget>[
-            DcElevatedButton(
-              text: topic.name,
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const QuestionsPage(),
-                  ),
-                );
-              },
+      body: ref.watch(topicsStateHolderProvider).when(
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
             ),
-            const SizedBox(height: 8),
-          ]
-        ],
-      ),
+            loaded: (topics) => ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              children: <Widget>[
+                for (final topic in topics) ...<Widget>[
+                  DcElevatedButton(
+                    text: topic.name,
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const QuestionsPage(),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                ]
+              ],
+            ),
+            error: () => const Center(
+              child: Text('Произошла ошибка!'),
+            ),
+          ),
     );
   }
 }
