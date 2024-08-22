@@ -40,9 +40,6 @@ class ShortAnswerQuestionWidget extends StatelessWidget {
           onPressed: onCheckAnswer,
           text: 'Проверить ответ',
         ),
-        const SizedBox(height: 20),
-        Text("Feedback: ${question.generalFeedback}",
-            style: const TextStyle(color: Colors.grey)),
       ],
     );
   }

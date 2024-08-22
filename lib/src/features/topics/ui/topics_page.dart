@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
 
+import '../../../shared/shared.dart';
+
 class TopicPage extends ConsumerStatefulWidget {
   const TopicPage({super.key, required this.exam});
 
@@ -55,8 +57,10 @@ class _TopicPageState extends ConsumerState<TopicPage> {
                 ]
               ],
             ),
-            error: () => const Center(
-              child: Text('Произошла ошибка!'),
+            error: () => DcErrorWidget(
+              onTryAgainTap: () => ref
+                  .read(topicsManagerProvider)
+                  .getTopicsByExamId(widget.exam.id),
             ),
           ),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
 
+import '../../../shared/shared.dart';
 import '../../topics/topics.dart';
 import '../exams.dart';
 
@@ -36,8 +37,8 @@ class ExamChoiceAlert extends ConsumerWidget {
                 )
                 .toList(),
           ),
-          error: () => const Center(
-            child: Text('Произошла ошибка!'),
+          error: () => DcErrorWidget(
+            onTryAgainTap: () => ref.read(examsManagerProvider).getExams(),
           ),
         );
   }

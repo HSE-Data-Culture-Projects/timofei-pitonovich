@@ -1,4 +1,4 @@
-import 'package:app/src/features/questions/managers/managers.dart';
+import 'package:app/src/features/questions/di/providers.dart';
 import 'package:app/src/features/questions/ui/widgets/question_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,10 +12,12 @@ class QuestionsPage extends ConsumerStatefulWidget {
 }
 
 class _QuestionsPageState extends ConsumerState<QuestionsPage> {
+  final PageController _pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
-    final questionsState = ref.watch(questionsManagerProvider);
-    final questionsManager = ref.read(questionsManagerProvider.notifier);
+    final questionsState = ref.watch(questionsStateHolderProvider);
+    final questionsManager = ref.read(questionsStateHolderProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(),
@@ -30,13 +32,15 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
                 scrollDirection: Axis.horizontal,
                 itemCount: questionsState.questions.length,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
+                  return InkWell(
                     onTap: () {
-                      // Выбор ответа на вопрос
-                      // например:
-                      // questionsManager.selectAnswer(index, selectedAnswer);
-                      // where selectedAnswer - это выбранный ответ пользователя
+                      _pageController.animateToPage(
+                        index,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.ease,
+                      );
                     },
+                    borderRadius: BorderRadius.circular(16),
                     child: Container(
                       height: 48,
                       width: 48,
@@ -60,6 +64,7 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
             const SizedBox(height: 16),
             Expanded(
               child: PageView.builder(
+                controller: _pageController,
                 itemCount: questionsState.questions.length,
                 itemBuilder: (context, index) {
                   final question = questionsState.questions[index];

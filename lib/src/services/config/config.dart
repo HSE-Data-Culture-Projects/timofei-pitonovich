@@ -30,38 +30,10 @@ final selectedThemeProvider = StateProvider<ThemeData>(
   (ref) => availableThemes[0],
 );
 
-const testXml = '''
-<?xml version="1.0" encoding="UTF-8"?>
-<quiz>
-<!-- question: 36  -->
-  <question type="truefalse">
-    <name>
-      <text>true/false</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>descr</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text><![CDATA[<p>test?</p>]]></text>
-    </generalfeedback>
-    <defaultgrade>1</defaultgrade>
-    <penalty>1</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <answer fraction="100" format="moodle_auto_format">
-      <text>true</text>
-      <feedback format="html">
-        <text><![CDATA[<p>test</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="moodle_auto_format">
-      <text>false</text>
-      <feedback format="html">
-        <text><![CDATA[<p>teste3</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-
-</quiz>
-
-''';
+final selectedThemeNameProvider = Provider<String>((ref) {
+  final selectedTheme = ref.watch(selectedThemeProvider);
+  if (selectedTheme == availableThemes[0]) {
+    return 'light';
+  }
+  return 'dark';
+});
