@@ -9,7 +9,7 @@ class TopicsRemoteService implements TopicsService {
   @override
   Future<List<Topic>> getTopicsByExam(String examId) async {
     try {
-      final response = await _dio.get('/api/topics/$examId');
+      final response = await _dio.get('/api/topics/exam/$examId');
       return Topic.listFromJson(response.data as List<dynamic>);
     } on Exception {
       rethrow;

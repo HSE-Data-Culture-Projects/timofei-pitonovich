@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import '../topics.dart';
 
 class TopicsManager {
@@ -14,7 +16,8 @@ class TopicsManager {
       _topicsStateHolder.setLoading();
       final topics = await _topicsRepository.getTopicsByExam(examId);
       _topicsStateHolder.setLoaded(topics);
-    } on Exception {
+    } on Exception catch (e) {
+      debugPrint('$e');
       _topicsStateHolder.setError();
     }
   }
