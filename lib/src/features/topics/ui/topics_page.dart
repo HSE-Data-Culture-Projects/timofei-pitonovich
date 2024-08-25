@@ -48,7 +48,9 @@ class _TopicPageState extends ConsumerState<TopicPage> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const QuestionsPage(),
+                          builder: (context) => QuestionsPage(
+                            topicId: topic.id,
+                          ),
                         ),
                       );
                     },

@@ -2,10 +2,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app/src/features/questions/questions.dart';
 
 class QuestionsStateHolder extends StateNotifier<QuestionsState> {
-  final QuestionsRepository repository;
+  QuestionsStateHolder()
+      : super(
+          QuestionsState.initial(<Question>[]),
+        );
 
-  QuestionsStateHolder(this.repository)
-      : super(QuestionsState.initial(repository.getQuestionsByTopicId(1)));
+  void clear() => state = QuestionsState.initial(<Question>[]);
+
+  void setQuestions(List<Question> questions) {
+    state = state.copyWith(questions: questions);
+  }
 
   void selectAnswer(int questionIndex, dynamic answer) {
     final updatedSelectedAnswers = Map<int, dynamic>.from(state.selectedAnswers)

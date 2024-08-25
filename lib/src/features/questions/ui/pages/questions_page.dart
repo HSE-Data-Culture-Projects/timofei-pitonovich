@@ -5,7 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 class QuestionsPage extends ConsumerStatefulWidget {
-  const QuestionsPage({super.key});
+  const QuestionsPage({required this.topicId, super.key});
+
+  final String topicId;
 
   @override
   ConsumerState<QuestionsPage> createState() => _QuestionsPageState();
@@ -15,9 +17,25 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
   final PageController _pageController = PageController();
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(questionsManagerProvider(widget.topicId)).getQuestions(
+            widget.topicId,
+            updateState: ref
+                .read(questionsStateHolderProvider(widget.topicId))
+                .questions
+                .isEmpty,
+          );
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final questionsState = ref.watch(questionsStateHolderProvider);
-    final questionsManager = ref.read(questionsStateHolderProvider.notifier);
+    final questionsState =
+        ref.watch(questionsStateHolderProvider(widget.topicId));
+    final questionsManager =
+        ref.read(questionsStateHolderProvider(widget.topicId).notifier);
 
     return Scaffold(
       appBar: AppBar(),
@@ -68,8 +86,10 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
                 itemCount: questionsState.questions.length,
                 itemBuilder: (context, index) {
                   final question = questionsState.questions[index];
+                  final selectedAnswers = questionsState.selectedAnswers[index];
                   return QuestionWidget(
                     question: question,
+                    selectedAnswers: selectedAnswers,
                     onAnswerSelected: (answer) {
                       questionsManager.selectAnswer(index, answer);
                     },

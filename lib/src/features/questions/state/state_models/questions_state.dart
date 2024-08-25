@@ -3,9 +3,9 @@ import 'package:app/src/features/questions/questions.dart';
 class QuestionsState {
   final List<Question> questions;
   final Map<int, dynamic>
-  selectedAnswers; // key: questionIndex, value: selected answer
+      selectedAnswers; // key: questionIndex, value: selected answer
   final Map<int, bool>
-  isAnswerCorrect; // key: questionIndex, value: correctness
+      isAnswerCorrect; // key: questionIndex, value: correctness
 
   QuestionsState({
     required this.questions,

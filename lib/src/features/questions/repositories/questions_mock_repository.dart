@@ -2,7 +2,7 @@ import '../questions.dart';
 
 class QuestionsMockRepository implements QuestionsRepository {
   @override
-  List<Question> getQuestionsByTopicId(int topicId) {
+  List<Question> getQuestionsByTopicId(String topicId) {
     return const <Question>[
       Question.multiChoice(
         name: 'Вопрос 1',

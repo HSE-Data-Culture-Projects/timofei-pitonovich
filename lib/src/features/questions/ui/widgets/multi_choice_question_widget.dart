@@ -19,8 +19,7 @@ class MultiChoiceQuestionWidget extends StatefulWidget {
       _MultiChoiceQuestionWidgetState();
 }
 
-class _MultiChoiceQuestionWidgetState
-    extends State<MultiChoiceQuestionWidget> {
+class _MultiChoiceQuestionWidgetState extends State<MultiChoiceQuestionWidget> {
   List<bool> _selectedValues = [];
 
   @override
@@ -38,50 +37,44 @@ class _MultiChoiceQuestionWidgetState
         Text(widget.question.name,
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
-        Text(widget.question.questionText, style: const TextStyle(fontSize: 16)),
+        Text(widget.question.questionText,
+            style: const TextStyle(fontSize: 16)),
         const SizedBox(height: 20),
-        ...List.generate(widget.question.answers.length, (index) {
-          final answer = widget.question.answers[index];
-          return widget.question.single
-              ? RadioListTile<bool>(
-                  title: Text(answer.text),
-                  value: true,
-                  groupValue: _selectedValues[index] ? true : null,
-                  onChanged: (value) {
-                    setState(() {
-                      for (int i = 0; i < _selectedValues.length; i++) {
-                        _selectedValues[i] = i == index;
-                      }
-                    });
-                    widget.onAnswerSelected(answer);
-                  },
-                )
-              : CheckboxListTile(
-                  title: Text(answer.text),
-                  value: _selectedValues[index],
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedValues[index] = value!;
-                    });
-                    widget.onAnswerSelected(answer);
-                  },
-                );
-        }),
+        ...List.generate(
+          widget.question.answers.length,
+          (index) {
+            final answer = widget.question.answers[index];
+            return widget.question.single
+                ? RadioListTile<bool>(
+                    title: Text(answer.text),
+                    value: true,
+                    groupValue: _selectedValues[index] ? true : null,
+                    onChanged: (value) {
+                      setState(() {
+                        for (int i = 0; i < _selectedValues.length; i++) {
+                          _selectedValues[i] = i == index;
+                        }
+                      });
+                      widget.onAnswerSelected(answer);
+                    },
+                  )
+                : CheckboxListTile(
+                    title: Text(answer.text),
+                    value: _selectedValues[index],
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedValues[index] = value!;
+                      });
+                      widget.onAnswerSelected(answer);
+                    },
+                  );
+          },
+        ),
         const SizedBox(height: 20),
         DcElevatedButton(
           onPressed: widget.onCheckAnswer,
           text: 'Проверить ответ',
         ),
-        const SizedBox(height: 20),
-        Text("Feedback: ${widget.question.generalFeedback}",
-            style: const TextStyle(color: Colors.grey)),
-        if (!widget.question.single) ...[
-          Text(
-              "Partially Correct Feedback: ${widget.question.partiallyCorrectFeedback}",
-              style: const TextStyle(color: Colors.grey)),
-          Text("Incorrect Feedback: ${widget.question.incorrectFeedback}",
-              style: const TextStyle(color: Colors.grey)),
-        ],
       ],
     );
   }

@@ -5,12 +5,14 @@ class QuestionWidget extends StatefulWidget {
   final Question question;
   final void Function(dynamic answer) onAnswerSelected;
   final VoidCallback onCheckAnswer;
+  final dynamic selectedAnswers;
 
   const QuestionWidget({
     super.key,
     required this.question,
     required this.onAnswerSelected,
     required this.onCheckAnswer,
+    this.selectedAnswers,
   });
 
   @override
@@ -25,6 +27,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         question: widget.question as ShortAnswerQuestion,
         onAnswerSelected: widget.onAnswerSelected,
         onCheckAnswer: widget.onCheckAnswer,
+        selectedAnswer: widget.selectedAnswers,
       );
     }
     if (widget.question is MultichoiceQuestion) {

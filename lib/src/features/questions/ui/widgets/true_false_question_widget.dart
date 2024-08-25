@@ -26,14 +26,22 @@ class _TrueFalseQuestionWidgetState extends State<TrueFalseQuestionWidget> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(widget.question.name,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+      children: <Widget>[
+        Text(
+          widget.question.name,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         const SizedBox(height: 10),
-        Text(widget.question.questionText, style: const TextStyle(fontSize: 16)),
+        Text(
+          widget.question.questionText,
+          style: const TextStyle(fontSize: 16),
+        ),
         const SizedBox(height: 20),
         RadioListTile<bool>(
-          title: const Text('True'),
+          title: const Text('Верно'),
           value: true,
           groupValue: _selectedValue,
           onChanged: (value) {
@@ -44,7 +52,7 @@ class _TrueFalseQuestionWidgetState extends State<TrueFalseQuestionWidget> {
           },
         ),
         RadioListTile<bool>(
-          title: const Text('False'),
+          title: const Text('Неверно'),
           value: false,
           groupValue: _selectedValue,
           onChanged: (value) {
@@ -59,9 +67,6 @@ class _TrueFalseQuestionWidgetState extends State<TrueFalseQuestionWidget> {
           onPressed: widget.onCheckAnswer,
           text: 'Проверить ответ',
         ),
-        const SizedBox(height: 20),
-        Text("Feedback: ${widget.question.generalFeedback}",
-            style: const TextStyle(color: Colors.grey)),
       ],
     );
   }
