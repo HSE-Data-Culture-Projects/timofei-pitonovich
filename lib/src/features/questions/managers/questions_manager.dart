@@ -13,7 +13,7 @@ class QuestionsManager {
   Future<void> getQuestions(String topicId, {bool updateState = true}) async {
     try {
       if (!updateState) return;
-      final questions = _questionsRepository.getQuestionsByTopicId(
+      final questions = await _questionsRepository.getQuestionsByTopicId(
         topicId,
       );
       _stateHolder.clear();

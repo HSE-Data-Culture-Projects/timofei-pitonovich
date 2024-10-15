@@ -2,7 +2,7 @@ import '../questions.dart';
 
 class QuestionsMockRepository implements QuestionsRepository {
   @override
-  List<Question> getQuestionsByTopicId(String topicId) {
+  Future<List<Question>> getQuestionsByTopicId(String topicId) async {
     return const <Question>[
       Question.multiChoice(
         name: 'Вопрос 1',
