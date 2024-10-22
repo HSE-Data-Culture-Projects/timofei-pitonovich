@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import '../../questions.dart';
 
 class TrueFalseQuestionWidget extends ConsumerStatefulWidget {
@@ -110,7 +108,7 @@ class _TrueFalseQuestionWidgetState
         ),
         const SizedBox(height: 16),
         DcOutlinedButton(
-          text: 'Подсказка от GIGACHAT1',
+          text: 'Подсказка от GIGACHAT',
           onPressed: _isLoading ? () {} : _getGigaChatHint,
         ),
         const SizedBox(height: 16),

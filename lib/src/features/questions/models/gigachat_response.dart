@@ -1,8 +1,7 @@
-// lib/models/chat_response.dart
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'gigachat_response.freezed.dart';
+
 part 'gigachat_response.g.dart';
 
 @freezed
@@ -15,7 +14,8 @@ class GigaChatResponse with _$GigaChatResponse {
     required Usage usage,
   }) = _GigaChatResponse;
 
-  factory GigaChatResponse.fromJson(Map<String, dynamic> json) => _$GigaChatResponseFromJson(json);
+  factory GigaChatResponse.fromJson(Map<String, dynamic> json) =>
+      _$GigaChatResponseFromJson(json);
 }
 
 @freezed
@@ -36,7 +36,8 @@ class Message with _$Message {
     required String role,
   }) = _Message;
 
-  factory Message.fromJson(Map<String, dynamic> json) => _$MessageFromJson(json);
+  factory Message.fromJson(Map<String, dynamic> json) =>
+      _$MessageFromJson(json);
 }
 
 @freezed

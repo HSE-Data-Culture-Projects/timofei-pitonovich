@@ -11,6 +11,7 @@ class Exam with _$Exam {
   const factory Exam({
     required String id,
     required String name,
+    required int topicsCount,
     @Default([]) List<Topic> topics,
   }) = _Exam;
 

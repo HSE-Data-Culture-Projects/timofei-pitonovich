@@ -1,4 +1,5 @@
 import 'package:app/src/features/main/di/providers.dart';
+import 'package:app/src/features/main/ui/progress_widget.dart';
 import 'package:app/src/localization/app_localizations.dart';
 import 'package:app/src/shared/shared.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,14 @@ class MainPage extends ConsumerStatefulWidget {
 }
 
 class _MainPageState extends ConsumerState<MainPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(examsManagerProvider).getExams();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context)!;
@@ -57,54 +66,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                 ),
               ),
               const SizedBox(height: 24),
-              const Row(
-                children: <Widget>[
-                  Expanded(
-                    child: _ProgressWidget(
-                      progress: 0.3,
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: _ProgressWidget(
-                      progress: 0.56,
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: _ProgressWidget(
-                      progress: 0.75,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 4),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      locale.mainDigitalLiteracyExam,
-                      textAlign: TextAlign.center,
-                      style: context.fontsTheme.dcLabelLarge,
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      locale.mainProgrammingExam,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.fontsTheme.dcLabelLarge,
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      locale.mainDataAnalysisExam,
-                      textAlign: TextAlign.center,
-                      style: context.fontsTheme.dcLabelLarge,
-                    ),
-                  ),
-                ],
-              ),
+              const ExamsProgressWidget(),
               const SizedBox(height: 24),
               DcElevatedButton(
                 text: locale.mainSolveButtonText,
@@ -159,32 +121,5 @@ class _MainPageState extends ConsumerState<MainPage> {
         ),
       ),
     );
-  }
-}
-
-class _ProgressWidget extends StatelessWidget {
-  const _ProgressWidget({this.progress = 0.1});
-
-  final double progress;
-
-  @override
-  Widget build(BuildContext context) => Container(
-        height: 48,
-        padding: const EdgeInsets.all(10),
-        child: HorizontalRateIndicator(
-          value: progress,
-          fillColor: _color(context),
-          trackColor: context.colorScheme.secondary,
-        ),
-      );
-
-  Color _color(BuildContext context) {
-    if (progress <= 0.39999999) {
-      return context.colorScheme.negative;
-    }
-    if (progress <= 0.59999999) {
-      return context.colorScheme.warning;
-    }
-    return context.colorScheme.positive;
   }
 }

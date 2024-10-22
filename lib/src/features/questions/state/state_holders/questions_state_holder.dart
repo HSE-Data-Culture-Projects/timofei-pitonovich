@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app/src/features/questions/questions.dart';
 
@@ -20,7 +21,7 @@ class QuestionsStateHolder extends StateNotifier<QuestionsState> {
     state = state.copyWith(selectedAnswers: updatedSelectedAnswers);
   }
 
-  void checkAnswer(int questionIndex) {
+  void checkAnswer(int questionIndex, PageController controller) {
     final question = state.questions[questionIndex];
     final selectedAnswer = state.selectedAnswers[questionIndex];
 
@@ -42,6 +43,14 @@ class QuestionsStateHolder extends StateNotifier<QuestionsState> {
     } else if (question is ShortAnswerQuestion) {
       isCorrect =
           question.answers.any((answer) => answer.text == selectedAnswer);
+    }
+
+    if (isCorrect) {
+      controller.animateToPage(
+        questionIndex + 1,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.ease,
+      );
     }
 
     final updatedIsAnswerCorrect = Map<int, bool>.from(state.isAnswerCorrect)

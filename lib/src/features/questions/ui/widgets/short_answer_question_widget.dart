@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import '../../questions.dart';
 
 class ShortAnswerQuestionWidget extends ConsumerStatefulWidget {
@@ -95,12 +93,9 @@ class _ShortAnswerQuestionWidgetState
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 20),
-        TextField(
+        DcTextField(
+          label: 'Ваш ответ',
           controller: _controller,
-          decoration: const InputDecoration(
-            labelText: 'Ваш ответ',
-            border: OutlineInputBorder(),
-          ),
           onChanged: (value) {
             widget.onAnswerSelected(value);
           },

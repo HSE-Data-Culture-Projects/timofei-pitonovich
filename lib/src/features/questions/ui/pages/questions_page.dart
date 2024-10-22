@@ -30,6 +30,8 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
     });
   }
 
+  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     final questionsState =
@@ -64,11 +66,13 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
                       width: 48,
                       decoration: BoxDecoration(
                         border: Border.all(
-                            color: questionsState.isAnswerCorrect[index] != null
-                                ? (questionsState.isAnswerCorrect[index]!
-                                    ? Colors.green
-                                    : Colors.red)
-                                : context.colorScheme.secondary),
+                            color: index == currentIndex
+                                ? context.colorScheme.primary
+                                : questionsState.isAnswerCorrect[index] != null
+                                    ? (questionsState.isAnswerCorrect[index]!
+                                        ? Colors.green
+                                        : Colors.red)
+                                    : context.colorScheme.secondary),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       padding: const EdgeInsets.all(8),
@@ -84,6 +88,10 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: questionsState.questions.length,
+                onPageChanged: (index) {
+                  currentIndex = index;
+                  setState(() {});
+                },
                 itemBuilder: (context, index) {
                   final question = questionsState.questions[index];
                   final selectedAnswers = questionsState.selectedAnswers[index];
@@ -94,7 +102,7 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
                       questionsManager.selectAnswer(index, answer);
                     },
                     onCheckAnswer: () {
-                      questionsManager.checkAnswer(index);
+                      questionsManager.checkAnswer(index, _pageController);
                     },
                   );
                 },

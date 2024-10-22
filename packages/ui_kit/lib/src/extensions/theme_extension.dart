@@ -3,7 +3,6 @@ import 'package:ui_kit/src/color_schemas/color_schemas.dart';
 import 'package:ui_kit/src/color_schemas/text_color_scheme.dart';
 import 'package:ui_kit/src/fonts/fonts.dart';
 
-
 /// Расширение для [ThemeData], предоставляющее удобный и короткий доступ к
 /// [ThemeExtension], находящимся внутри [ThemeData].
 extension ThemeDataExtension on ThemeData {

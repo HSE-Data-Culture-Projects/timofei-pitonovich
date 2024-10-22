@@ -22,6 +22,7 @@ Exam _$ExamFromJson(Map<String, dynamic> json) {
 mixin _$Exam {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  int get topicsCount => throw _privateConstructorUsedError;
   List<Topic> get topics => throw _privateConstructorUsedError;
 
   /// Serializes this Exam to a JSON map.
@@ -38,7 +39,7 @@ abstract class $ExamCopyWith<$Res> {
   factory $ExamCopyWith(Exam value, $Res Function(Exam) then) =
       _$ExamCopyWithImpl<$Res, Exam>;
   @useResult
-  $Res call({String id, String name, List<Topic> topics});
+  $Res call({String id, String name, int topicsCount, List<Topic> topics});
 }
 
 /// @nodoc
@@ -58,6 +59,7 @@ class _$ExamCopyWithImpl<$Res, $Val extends Exam>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? topicsCount = null,
     Object? topics = null,
   }) {
     return _then(_value.copyWith(
@@ -69,6 +71,10 @@ class _$ExamCopyWithImpl<$Res, $Val extends Exam>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      topicsCount: null == topicsCount
+          ? _value.topicsCount
+          : topicsCount // ignore: cast_nullable_to_non_nullable
+              as int,
       topics: null == topics
           ? _value.topics
           : topics // ignore: cast_nullable_to_non_nullable
@@ -84,7 +90,7 @@ abstract class _$$ExamImplCopyWith<$Res> implements $ExamCopyWith<$Res> {
       __$$ExamImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, List<Topic> topics});
+  $Res call({String id, String name, int topicsCount, List<Topic> topics});
 }
 
 /// @nodoc
@@ -101,6 +107,7 @@ class __$$ExamImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? topicsCount = null,
     Object? topics = null,
   }) {
     return _then(_$ExamImpl(
@@ -112,6 +119,10 @@ class __$$ExamImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      topicsCount: null == topicsCount
+          ? _value.topicsCount
+          : topicsCount // ignore: cast_nullable_to_non_nullable
+              as int,
       topics: null == topics
           ? _value._topics
           : topics // ignore: cast_nullable_to_non_nullable
@@ -126,6 +137,7 @@ class _$ExamImpl implements _Exam {
   const _$ExamImpl(
       {required this.id,
       required this.name,
+      required this.topicsCount,
       final List<Topic> topics = const []})
       : _topics = topics;
 
@@ -136,6 +148,8 @@ class _$ExamImpl implements _Exam {
   final String id;
   @override
   final String name;
+  @override
+  final int topicsCount;
   final List<Topic> _topics;
   @override
   @JsonKey()
@@ -147,7 +161,7 @@ class _$ExamImpl implements _Exam {
 
   @override
   String toString() {
-    return 'Exam(id: $id, name: $name, topics: $topics)';
+    return 'Exam(id: $id, name: $name, topicsCount: $topicsCount, topics: $topics)';
   }
 
   @override
@@ -157,13 +171,15 @@ class _$ExamImpl implements _Exam {
             other is _$ExamImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.topicsCount, topicsCount) ||
+                other.topicsCount == topicsCount) &&
             const DeepCollectionEquality().equals(other._topics, _topics));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, const DeepCollectionEquality().hash(_topics));
+  int get hashCode => Object.hash(runtimeType, id, name, topicsCount,
+      const DeepCollectionEquality().hash(_topics));
 
   /// Create a copy of Exam
   /// with the given fields replaced by the non-null parameter values.
@@ -185,6 +201,7 @@ abstract class _Exam implements Exam {
   const factory _Exam(
       {required final String id,
       required final String name,
+      required final int topicsCount,
       final List<Topic> topics}) = _$ExamImpl;
 
   factory _Exam.fromJson(Map<String, dynamic> json) = _$ExamImpl.fromJson;
@@ -193,6 +210,8 @@ abstract class _Exam implements Exam {
   String get id;
   @override
   String get name;
+  @override
+  int get topicsCount;
   @override
   List<Topic> get topics;
 

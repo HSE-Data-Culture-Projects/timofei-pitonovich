@@ -38,8 +38,7 @@ class DcColorScheme extends ThemeExtension<DcColorScheme> {
       );
 
   @override
-  DcColorScheme lerp(covariant DcColorScheme? other, double t) =>
-      DcColorScheme(
+  DcColorScheme lerp(covariant DcColorScheme? other, double t) => DcColorScheme(
         background: Color.lerp(background, other?.background, t)!,
         primary: Color.lerp(primary, other?.primary, t)!,
         secondary: Color.lerp(secondary, other?.secondary, t)!,

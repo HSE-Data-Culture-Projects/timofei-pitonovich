@@ -27,5 +27,7 @@ final questionsStateHolderProvider =
 });
 
 final gigaChatServiceProvider = Provider<GigaChatService>((ref) {
-  return GigaChatService();
+  return GigaChatService(
+    dio: ref.watch(dioProvider),
+  );
 });

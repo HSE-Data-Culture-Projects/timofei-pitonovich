@@ -1,5 +1,3 @@
-// lib/services/gigachat_service.dart
-
 import 'dart:convert';
 import 'package:app/src/features/questions/questions.dart';
 import 'package:dio/dio.dart';
@@ -15,13 +13,12 @@ class GigaChatService {
   Future<void> authenticate() async {
     try {
       final response = await _dio.post(
-        'http://192.168.162.226:3000/api/gigachat/auth/token',
+        '/api/gigachat/auth/token',
         options: Options(
           headers: {
             'user-agent': 'Dart/3.5 (dart:io)',
             'accept-encoding': 'gzip',
             'content-length': '0',
-            'host': '192.168.162.226:3000',
           },
         ),
         data: '', // Пустое тело запроса
@@ -33,7 +30,8 @@ class GigaChatService {
         debugPrint('Аутентификация успешна. Токен: $_token');
       } else {
         throw Exception(
-            'Не удалось аутентифицироваться. Статус: ${response.statusCode}');
+          'Не удалось аутентифицироваться. Статус: ${response.statusCode}',
+        );
       }
     } on DioException catch (e) {
       debugPrint('Ошибка аутентификации: ${e.message}');
@@ -51,14 +49,13 @@ class GigaChatService {
 
     try {
       final response = await _dio.post(
-        'http://192.168.162.226:3000/api/gigachat/generate',
+        '/api/gigachat/generate',
         options: Options(
           headers: {
             'user-agent': 'Dart/3.5 (dart:io)',
             'content-type': 'application/json',
             'accept-encoding': 'gzip',
             'authorization': 'Bearer $_token',
-            'host': '192.168.162.226:3000',
           },
         ),
         data: jsonEncode({'message': message}),
