@@ -16,11 +16,13 @@ class MainPage extends ConsumerStatefulWidget {
 }
 
 class _MainPageState extends ConsumerState<MainPage> {
+  Map<String, int> examsStatistics = {};
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(examsManagerProvider).getExams();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await ref.read(examsManagerProvider).getExams();
     });
   }
 
@@ -66,7 +68,13 @@ class _MainPageState extends ConsumerState<MainPage> {
                 ),
               ),
               const SizedBox(height: 24),
-              const ExamsProgressWidget(),
+              ref.watch(examsStateHolderProvider).when(
+                    loading: () => const CircularProgressIndicator(),
+                    loaded: (state) => ExamsProgressWidget(
+                      state: state,
+                    ),
+                    error: () => const Text('Ошибка при загрузке статистики'),
+                  ),
               const SizedBox(height: 24),
               DcElevatedButton(
                 text: locale.mainSolveButtonText,

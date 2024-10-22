@@ -1,4 +1,5 @@
-import 'package:app/src/features/exams/di/providers.dart';
+import 'package:app/src/features/exams/exams.dart';
+import 'package:app/src/features/main/di/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -6,20 +7,26 @@ import 'package:ui_kit/ui_kit.dart';
 import '../../../shared/ui/ui_kit.dart';
 
 class ExamsProgressWidget extends ConsumerWidget {
-  const ExamsProgressWidget({super.key});
+  const ExamsProgressWidget({
+    super.key,
+    required this.state,
+  });
+
+  final List<Exam> state;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(examsStateHolderProvider).when(
+    return ref.watch(statisticsProvider).when(
           loading: () => const CircularProgressIndicator(),
-          loaded: (state) => Column(
+          data: (data) => Column(
             children: <Widget>[
               Row(
                 children: <Widget>[
                   for (int i = 0; i < 3; ++i) ...<Widget>[
                     Expanded(
                       child: _ProgressWidget(
-                        progress: 1 / state[i].topicsCount,
+                        progress:
+                            data[state[i].id]! / state[i].topicsCount,
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -42,7 +49,7 @@ class ExamsProgressWidget extends ConsumerWidget {
               ),
             ],
           ),
-          error: () => const Text('Ошибка при загрузке статистики'),
+          error: (e, s) => const Text('Ошибка при загрузке статистики'),
         );
   }
 }
