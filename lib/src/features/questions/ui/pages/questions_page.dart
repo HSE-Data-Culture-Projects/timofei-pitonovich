@@ -14,8 +14,6 @@ class QuestionsPage extends ConsumerStatefulWidget {
 }
 
 class _QuestionsPageState extends ConsumerState<QuestionsPage> {
-  final PageController _pageController = PageController();
-
   @override
   void initState() {
     super.initState();
@@ -36,11 +34,32 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
   Widget build(BuildContext context) {
     final questionsState =
         ref.watch(questionsStateHolderProvider(widget.topicId));
-    final questionsManager =
-        ref.read(questionsStateHolderProvider(widget.topicId).notifier);
+    final questionsManager = ref.read(questionsManagerProvider(widget.topicId));
+
+    final pageController = ref.watch(questionsPageControllerProvider);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.favorite_outline,
+              size: 32,
+            ),
+          )
+        ],
+      ),
+      floatingActionButton: questionsState.questions.length == currentIndex + 1
+          ? Padding(
+              padding: const EdgeInsets.all(16),
+              child: DcElevatedButton(
+                text: 'Завершить тему',
+                onPressed: () {},
+              ),
+            )
+          : null,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -54,7 +73,7 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      _pageController.animateToPage(
+                      pageController.animateToPage(
                         index,
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.ease,
@@ -86,7 +105,7 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
             const SizedBox(height: 16),
             Expanded(
               child: PageView.builder(
-                controller: _pageController,
+                controller: pageController,
                 itemCount: questionsState.questions.length,
                 onPageChanged: (index) {
                   currentIndex = index;
@@ -102,7 +121,7 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
                       questionsManager.selectAnswer(index, answer);
                     },
                     onCheckAnswer: () {
-                      questionsManager.checkAnswer(index, _pageController);
+                      questionsManager.checkAnswer(index);
                     },
                   );
                 },

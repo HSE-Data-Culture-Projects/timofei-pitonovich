@@ -185,6 +185,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Язык приложения'**
   String get settingsPageAppLanguage;
+
+  /// No description provided for @favoritesPageTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Избранное'**
+  String get favoritesPageTitle;
+
+  /// No description provided for @mistakesPageTitle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибки'**
+  String get mistakesPageTitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

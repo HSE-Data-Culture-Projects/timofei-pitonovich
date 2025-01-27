@@ -1,4 +1,6 @@
+import 'package:app/src/features/favorites/ui/favorites_page.dart';
 import 'package:app/src/features/main/ui/main_page.dart';
+import 'package:app/src/features/mistakes/ui/mistakes_page.dart';
 import 'package:app/src/features/settings/ui/settings_page.dart';
 import 'package:app/src/services/routing/routing.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,6 +19,14 @@ final routesProvider = Provider<List<RouteBase>>(
             parentNavigatorKey: navigatorKey,
             path: 'settings',
             builder: (context, state) => const SettingsPage(),
+          ),
+          GoRoute(
+            path: 'mistakes',
+            builder: (context, state) => const MistakesPage(),
+          ),
+          GoRoute(
+            path: 'favorites',
+            builder: (context, state) => const FavoritesPage(),
           ),
         ],
       ),

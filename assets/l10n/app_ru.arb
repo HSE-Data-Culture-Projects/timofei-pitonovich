@@ -14,5 +14,7 @@
   "settingsPageAppTheme": "Тема приложения",
   "settingsPageLightTheme": "Светлая",
   "settingsPageDarkTheme": "Тёмная",
-  "settingsPageAppLanguage": "Язык приложения"
+  "settingsPageAppLanguage": "Язык приложения",
+  "favoritesPageTitle": "Избранное",
+  "mistakesPageTitle": "Ошибки"
 }

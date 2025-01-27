@@ -52,4 +52,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settingsPageAppLanguage => 'Язык приложения';
+
+  @override
+  String get favoritesPageTitle => 'Избранное';
+
+  @override
+  String get mistakesPageTitle => 'Ошибки';
 }

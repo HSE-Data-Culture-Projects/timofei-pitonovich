@@ -52,4 +52,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsPageAppLanguage => 'App language';
+
+  @override
+  String get favoritesPageTitle => 'Favorites';
+
+  @override
+  String get mistakesPageTitle => 'Mistakes';
 }

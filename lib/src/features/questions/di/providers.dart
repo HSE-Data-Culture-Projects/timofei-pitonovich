@@ -2,13 +2,18 @@ import 'package:app/src/features/questions/questions.dart';
 import 'package:app/src/features/questions/services/gigachat_service.dart';
 import 'package:app/src/features/questions/services/services.dart';
 import 'package:app/src/services/network/dio.dart';
+import 'package:app/src/services/routing/providers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final questionsManagerProvider =
     Provider.autoDispose.family<QuestionsManager, String>((ref, id) {
   return QuestionsManager(
+    ref.watch(navigationManagerProvider),
     ref.watch(questionsRepositoryProvider),
     ref.watch(questionsStateHolderProvider(id).notifier),
+    ref.watch(questionsStateHolderProvider(id)),
+    ref.watch(questionsPageControllerProvider),
   );
 });
 
@@ -25,6 +30,10 @@ final questionsStateHolderProvider =
         (ref, id) {
   return QuestionsStateHolder();
 });
+
+final questionsPageControllerProvider = Provider.autoDispose<PageController>(
+  (ref) => PageController(),
+);
 
 final gigaChatServiceProvider = Provider<GigaChatService>((ref) {
   return GigaChatService(

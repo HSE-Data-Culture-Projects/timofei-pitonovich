@@ -14,5 +14,7 @@
   "settingsPageAppTheme": "App theme",
   "settingsPageLightTheme": "Light",
   "settingsPageDarkTheme": "Dark",
-  "settingsPageAppLanguage": "App language"
+  "settingsPageAppLanguage": "App language",
+  "favoritesPageTitle": "Favorites",
+  "mistakesPageTitle": "Mistakes"
 }

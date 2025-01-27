@@ -1,6 +1,7 @@
 import 'package:app/src/features/main/di/providers.dart';
 import 'package:app/src/features/main/ui/progress_widget.dart';
 import 'package:app/src/localization/app_localizations.dart';
+import 'package:app/src/services/routing/providers.dart';
 import 'package:app/src/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,7 +34,7 @@ class _MainPageState extends ConsumerState<MainPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Column(
             children: <Widget>[
               const SizedBox(height: 56),
@@ -91,27 +92,35 @@ class _MainPageState extends ConsumerState<MainPage> {
                 },
               ),
               const SizedBox(height: 8),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: DcElevatedButton(
-                      text: locale.mainGigachatButtonText,
-                      onPressed: () {},
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: DcElevatedButton(
-                      text: locale.mainFavoritesButtonText,
-                      onPressed: () {},
-                    ),
-                  ),
-                ],
+              // Row(
+              //   children: <Widget>[
+              //     Expanded(
+              //       child: DcElevatedButton(
+              //         text: locale.mainGigachatButtonText,
+              //         onPressed: () {},
+              //       ),
+              //     ),
+              //     const SizedBox(width: 8),
+              //     Expanded(
+              //       child: DcElevatedButton(
+              //         text: locale.mainFavoritesButtonText,
+              //         onPressed: () =>
+              //             ref.read(navigationManagerProvider).go('/favorites'),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              DcElevatedButton(
+                text: locale.mainFavoritesButtonText,
+                onPressed: () =>
+                    ref.read(navigationManagerProvider).go('/favorites'),
               ),
               const SizedBox(height: 8),
               DcElevatedButton(
                 text: locale.mainErrorsButtonText,
-                onPressed: () {},
+                color: context.colorScheme.negative,
+                onPressed: () =>
+                    ref.read(navigationManagerProvider).go('/mistakes'),
               ),
             ],
           ),
