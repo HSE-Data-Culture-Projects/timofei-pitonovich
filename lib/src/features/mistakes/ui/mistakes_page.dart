@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
 
+import '../../questions/questions.dart';
+
 class MistakesPage extends ConsumerStatefulWidget {
   const MistakesPage({super.key});
 
@@ -43,9 +45,19 @@ class _MistakesPageState extends ConsumerState<MistakesPage> {
             : ListView(
                 children: mistakeQuestions
                     .map<Widget>(
-                      (question) => Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Text(question.name),
+                      (question) => Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: QuestionWidget(
+                              question: question,
+                              onAnswerSelected: (answer) {},
+                              onCheckAnswer: () {},
+                            ),
+                          ),
+                          const Divider(),
+                        ],
                       ),
                     )
                     .toList(),

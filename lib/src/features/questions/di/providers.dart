@@ -1,3 +1,4 @@
+import 'package:app/src/features/mistakes/di/providers.dart';
 import 'package:app/src/features/questions/questions.dart';
 import 'package:app/src/features/questions/services/gigachat_service.dart';
 import 'package:app/src/features/questions/services/services.dart';
@@ -16,6 +17,7 @@ final questionsManagerProvider =
     ref.watch(questionsStateHolderProvider(id)),
     ref.watch(questionsPageControllerProvider),
     ref.watch(localStorageManagerProvider),
+    ref.watch(mistakesManagerProvider),
   );
 });
 

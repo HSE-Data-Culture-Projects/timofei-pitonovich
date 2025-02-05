@@ -1,5 +1,6 @@
 import 'package:app/src/features/favorites/di/providers.dart';
 import 'package:app/src/features/favorites/state/state_models/favorites_state.dart';
+import 'package:app/src/features/questions/questions.dart';
 import 'package:app/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,9 +47,19 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage> {
               : ListView(
                   children: favoriteQuestions
                       .map<Widget>(
-                        (question) => Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Text(question.name),
+                        (question) => Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: QuestionWidget(
+                                question: question,
+                                onAnswerSelected: (answer) {},
+                                onCheckAnswer: () {},
+                              ),
+                            ),
+                            const Divider(),
+                          ],
                         ),
                       )
                       .toList(),

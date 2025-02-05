@@ -1,3 +1,4 @@
+import 'package:app/src/features/mistakes/mistakes.dart';
 import 'package:app/src/features/questions/questions.dart';
 import 'package:app/src/services/routing/routing.dart';
 import 'package:app/src/services/storage/managers/local_storage_manager.dart';
@@ -10,6 +11,7 @@ class QuestionsManager {
   final QuestionsState _state;
   final PageController _pageController;
   final LocaleDatabaseManager _databaseManager;
+  final MistakesManager _mistakesManager;
 
   QuestionsManager(
     this._navigationManager,
@@ -18,6 +20,7 @@ class QuestionsManager {
     this._state,
     this._pageController,
     this._databaseManager,
+    this._mistakesManager,
   );
 
   Future<void> getQuestions(String topicId, {bool updateState = true}) async {
@@ -95,6 +98,7 @@ class QuestionsManager {
         );
       }
     } else {
+      _mistakesManager.addToMistakes(question);
       _navigationManager.showSnackBar(
         text: 'Ответ неверный! Попробуйте ещё раз!',
         error: true,
