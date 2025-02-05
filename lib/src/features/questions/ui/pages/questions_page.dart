@@ -1,5 +1,5 @@
-import 'package:app/src/features/questions/di/providers.dart';
-import 'package:app/src/features/questions/ui/widgets/question_widget.dart';
+import 'package:app/src/features/favorites/di/providers.dart';
+import 'package:app/src/features/questions/questions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -17,18 +17,23 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(questionsManagerProvider(widget.topicId)).getQuestions(
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await ref.read(questionsManagerProvider(widget.topicId)).getQuestions(
             widget.topicId,
             updateState: ref
                 .read(questionsStateHolderProvider(widget.topicId))
                 .questions
                 .isEmpty,
           );
+      isQuestionInFavorites = await ref
+          .read(questionsManagerProvider(widget.topicId))
+          .isInFavorites(0);
+      setState(() {});
     });
   }
 
   int currentIndex = 0;
+  bool isQuestionInFavorites = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +47,26 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
-            icon: const Icon(
+            onPressed: () async {
+              final question = questionsState.questions[currentIndex];
+              if (!await questionsManager.isInFavorites(currentIndex)) {
+                await ref
+                    .read(favoritesManagerProvider)
+                    .addToFavorites(question);
+                isQuestionInFavorites = true;
+              } else {
+                await ref
+                    .read(favoritesManagerProvider)
+                    .removeFromFavorites(question);
+                isQuestionInFavorites = false;
+              }
+              setState(() {});
+            },
+            icon: Icon(
               Icons.favorite_outline,
               size: 32,
+              color:
+                  isQuestionInFavorites ? context.colorScheme.negative : null,
             ),
           )
         ],
@@ -78,6 +99,12 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.ease,
                       );
+                      WidgetsBinding.instance.addPostFrameCallback((_) async {
+                        isQuestionInFavorites = await ref
+                            .read(questionsManagerProvider(widget.topicId))
+                            .isInFavorites(index);
+                        setState(() {});
+                      });
                     },
                     borderRadius: BorderRadius.circular(16),
                     child: Container(
@@ -107,8 +134,11 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
               child: PageView.builder(
                 controller: pageController,
                 itemCount: questionsState.questions.length,
-                onPageChanged: (index) {
+                onPageChanged: (index) async {
                   currentIndex = index;
+                  isQuestionInFavorites = await ref
+                      .read(questionsManagerProvider(widget.topicId))
+                      .isInFavorites(currentIndex);
                   setState(() {});
                 },
                 itemBuilder: (context, index) {

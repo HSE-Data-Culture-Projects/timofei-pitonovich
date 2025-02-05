@@ -44,7 +44,7 @@ mixin _$Question {
             String generalFeedback,
             double defaultGrade,
             double penalty,
-            List<ShortAnswer> answers)
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)
         shortAnswer,
     required TResult Function(
             String name,
@@ -52,6 +52,7 @@ mixin _$Question {
             String generalFeedback,
             double defaultGrade,
             double penalty,
+            @JsonSerializable(explicitToJson: true)
             TrueFalseAnswer correctAnswer)
         trueFalse,
     required TResult Function(
@@ -62,6 +63,7 @@ mixin _$Question {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -71,11 +73,22 @@ mixin _$Question {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, List<ShortAnswer> answers)?
+    TResult? Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)?
         shortAnswer,
-    TResult? Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, TrueFalseAnswer correctAnswer)?
+    TResult? Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true)
+            TrueFalseAnswer correctAnswer)?
         trueFalse,
     TResult? Function(
             String name,
@@ -85,6 +98,7 @@ mixin _$Question {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -94,11 +108,22 @@ mixin _$Question {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, List<ShortAnswer> answers)?
+    TResult Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)?
         shortAnswer,
-    TResult Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, TrueFalseAnswer correctAnswer)?
+    TResult Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true)
+            TrueFalseAnswer correctAnswer)?
         trueFalse,
     TResult Function(
             String name,
@@ -108,6 +133,7 @@ mixin _$Question {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -222,7 +248,7 @@ abstract class _$$ShortAnswerQuestionImplCopyWith<$Res>
       String generalFeedback,
       double defaultGrade,
       double penalty,
-      List<ShortAnswer> answers});
+      @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers});
 }
 
 /// @nodoc
@@ -275,7 +301,8 @@ class __$$ShortAnswerQuestionImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$ShortAnswerQuestionImpl implements ShortAnswerQuestion {
   const _$ShortAnswerQuestionImpl(
       {required this.name,
@@ -283,6 +310,7 @@ class _$ShortAnswerQuestionImpl implements ShortAnswerQuestion {
       required this.generalFeedback,
       required this.defaultGrade,
       required this.penalty,
+      @JsonSerializable(explicitToJson: true)
       required final List<ShortAnswer> answers,
       final String? $type})
       : _answers = answers,
@@ -303,6 +331,7 @@ class _$ShortAnswerQuestionImpl implements ShortAnswerQuestion {
   final double penalty;
   final List<ShortAnswer> _answers;
   @override
+  @JsonSerializable(explicitToJson: true)
   List<ShortAnswer> get answers {
     if (_answers is EqualUnmodifiableListView) return _answers;
     // ignore: implicit_dynamic_type
@@ -362,7 +391,7 @@ class _$ShortAnswerQuestionImpl implements ShortAnswerQuestion {
             String generalFeedback,
             double defaultGrade,
             double penalty,
-            List<ShortAnswer> answers)
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)
         shortAnswer,
     required TResult Function(
             String name,
@@ -370,6 +399,7 @@ class _$ShortAnswerQuestionImpl implements ShortAnswerQuestion {
             String generalFeedback,
             double defaultGrade,
             double penalty,
+            @JsonSerializable(explicitToJson: true)
             TrueFalseAnswer correctAnswer)
         trueFalse,
     required TResult Function(
@@ -380,6 +410,7 @@ class _$ShortAnswerQuestionImpl implements ShortAnswerQuestion {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -393,11 +424,22 @@ class _$ShortAnswerQuestionImpl implements ShortAnswerQuestion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, List<ShortAnswer> answers)?
+    TResult? Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)?
         shortAnswer,
-    TResult? Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, TrueFalseAnswer correctAnswer)?
+    TResult? Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true)
+            TrueFalseAnswer correctAnswer)?
         trueFalse,
     TResult? Function(
             String name,
@@ -407,6 +449,7 @@ class _$ShortAnswerQuestionImpl implements ShortAnswerQuestion {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -420,11 +463,22 @@ class _$ShortAnswerQuestionImpl implements ShortAnswerQuestion {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, List<ShortAnswer> answers)?
+    TResult Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)?
         shortAnswer,
-    TResult Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, TrueFalseAnswer correctAnswer)?
+    TResult Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true)
+            TrueFalseAnswer correctAnswer)?
         trueFalse,
     TResult Function(
             String name,
@@ -434,6 +488,7 @@ class _$ShortAnswerQuestionImpl implements ShortAnswerQuestion {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -497,6 +552,7 @@ abstract class ShortAnswerQuestion implements Question {
       required final String generalFeedback,
       required final double defaultGrade,
       required final double penalty,
+      @JsonSerializable(explicitToJson: true)
       required final List<ShortAnswer> answers}) = _$ShortAnswerQuestionImpl;
 
   factory ShortAnswerQuestion.fromJson(Map<String, dynamic> json) =
@@ -512,6 +568,7 @@ abstract class ShortAnswerQuestion implements Question {
   double get defaultGrade;
   @override
   double get penalty;
+  @JsonSerializable(explicitToJson: true)
   List<ShortAnswer> get answers;
 
   /// Create a copy of Question
@@ -536,7 +593,7 @@ abstract class _$$TrueFalseQuestionImplCopyWith<$Res>
       String generalFeedback,
       double defaultGrade,
       double penalty,
-      TrueFalseAnswer correctAnswer});
+      @JsonSerializable(explicitToJson: true) TrueFalseAnswer correctAnswer});
 
   $TrueFalseAnswerCopyWith<$Res> get correctAnswer;
 }
@@ -601,7 +658,8 @@ class __$$TrueFalseQuestionImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$TrueFalseQuestionImpl implements TrueFalseQuestion {
   const _$TrueFalseQuestionImpl(
       {required this.name,
@@ -609,7 +667,7 @@ class _$TrueFalseQuestionImpl implements TrueFalseQuestion {
       required this.generalFeedback,
       required this.defaultGrade,
       required this.penalty,
-      required this.correctAnswer,
+      @JsonSerializable(explicitToJson: true) required this.correctAnswer,
       final String? $type})
       : $type = $type ?? 'trueFalse';
 
@@ -627,6 +685,7 @@ class _$TrueFalseQuestionImpl implements TrueFalseQuestion {
   @override
   final double penalty;
   @override
+  @JsonSerializable(explicitToJson: true)
   final TrueFalseAnswer correctAnswer;
 
   @JsonKey(name: 'runtimeType')
@@ -677,7 +736,7 @@ class _$TrueFalseQuestionImpl implements TrueFalseQuestion {
             String generalFeedback,
             double defaultGrade,
             double penalty,
-            List<ShortAnswer> answers)
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)
         shortAnswer,
     required TResult Function(
             String name,
@@ -685,6 +744,7 @@ class _$TrueFalseQuestionImpl implements TrueFalseQuestion {
             String generalFeedback,
             double defaultGrade,
             double penalty,
+            @JsonSerializable(explicitToJson: true)
             TrueFalseAnswer correctAnswer)
         trueFalse,
     required TResult Function(
@@ -695,6 +755,7 @@ class _$TrueFalseQuestionImpl implements TrueFalseQuestion {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -708,11 +769,22 @@ class _$TrueFalseQuestionImpl implements TrueFalseQuestion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, List<ShortAnswer> answers)?
+    TResult? Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)?
         shortAnswer,
-    TResult? Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, TrueFalseAnswer correctAnswer)?
+    TResult? Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true)
+            TrueFalseAnswer correctAnswer)?
         trueFalse,
     TResult? Function(
             String name,
@@ -722,6 +794,7 @@ class _$TrueFalseQuestionImpl implements TrueFalseQuestion {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -735,11 +808,22 @@ class _$TrueFalseQuestionImpl implements TrueFalseQuestion {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, List<ShortAnswer> answers)?
+    TResult Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)?
         shortAnswer,
-    TResult Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, TrueFalseAnswer correctAnswer)?
+    TResult Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true)
+            TrueFalseAnswer correctAnswer)?
         trueFalse,
     TResult Function(
             String name,
@@ -749,6 +833,7 @@ class _$TrueFalseQuestionImpl implements TrueFalseQuestion {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -812,6 +897,7 @@ abstract class TrueFalseQuestion implements Question {
       required final String generalFeedback,
       required final double defaultGrade,
       required final double penalty,
+      @JsonSerializable(explicitToJson: true)
       required final TrueFalseAnswer correctAnswer}) = _$TrueFalseQuestionImpl;
 
   factory TrueFalseQuestion.fromJson(Map<String, dynamic> json) =
@@ -827,6 +913,7 @@ abstract class TrueFalseQuestion implements Question {
   double get defaultGrade;
   @override
   double get penalty;
+  @JsonSerializable(explicitToJson: true)
   TrueFalseAnswer get correctAnswer;
 
   /// Create a copy of Question
@@ -853,7 +940,7 @@ abstract class _$$MultichoiceQuestionImplCopyWith<$Res>
       double penalty,
       bool single,
       bool shuffleAnswers,
-      List<MultiChoiceAnswer> answers,
+      @JsonSerializable(explicitToJson: true) List<MultiChoiceAnswer> answers,
       String correctFeedback,
       String partiallyCorrectFeedback,
       String incorrectFeedback});
@@ -934,7 +1021,8 @@ class __$$MultichoiceQuestionImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$MultichoiceQuestionImpl implements MultichoiceQuestion {
   const _$MultichoiceQuestionImpl(
       {required this.name,
@@ -944,6 +1032,7 @@ class _$MultichoiceQuestionImpl implements MultichoiceQuestion {
       required this.penalty,
       required this.single,
       required this.shuffleAnswers,
+      @JsonSerializable(explicitToJson: true)
       required final List<MultiChoiceAnswer> answers,
       required this.correctFeedback,
       required this.partiallyCorrectFeedback,
@@ -971,6 +1060,7 @@ class _$MultichoiceQuestionImpl implements MultichoiceQuestion {
   final bool shuffleAnswers;
   final List<MultiChoiceAnswer> _answers;
   @override
+  @JsonSerializable(explicitToJson: true)
   List<MultiChoiceAnswer> get answers {
     if (_answers is EqualUnmodifiableListView) return _answers;
     // ignore: implicit_dynamic_type
@@ -1052,7 +1142,7 @@ class _$MultichoiceQuestionImpl implements MultichoiceQuestion {
             String generalFeedback,
             double defaultGrade,
             double penalty,
-            List<ShortAnswer> answers)
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)
         shortAnswer,
     required TResult Function(
             String name,
@@ -1060,6 +1150,7 @@ class _$MultichoiceQuestionImpl implements MultichoiceQuestion {
             String generalFeedback,
             double defaultGrade,
             double penalty,
+            @JsonSerializable(explicitToJson: true)
             TrueFalseAnswer correctAnswer)
         trueFalse,
     required TResult Function(
@@ -1070,6 +1161,7 @@ class _$MultichoiceQuestionImpl implements MultichoiceQuestion {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -1093,11 +1185,22 @@ class _$MultichoiceQuestionImpl implements MultichoiceQuestion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, List<ShortAnswer> answers)?
+    TResult? Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)?
         shortAnswer,
-    TResult? Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, TrueFalseAnswer correctAnswer)?
+    TResult? Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true)
+            TrueFalseAnswer correctAnswer)?
         trueFalse,
     TResult? Function(
             String name,
@@ -1107,6 +1210,7 @@ class _$MultichoiceQuestionImpl implements MultichoiceQuestion {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -1130,11 +1234,22 @@ class _$MultichoiceQuestionImpl implements MultichoiceQuestion {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, List<ShortAnswer> answers)?
+    TResult Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true) List<ShortAnswer> answers)?
         shortAnswer,
-    TResult Function(String name, String questionText, String generalFeedback,
-            double defaultGrade, double penalty, TrueFalseAnswer correctAnswer)?
+    TResult Function(
+            String name,
+            String questionText,
+            String generalFeedback,
+            double defaultGrade,
+            double penalty,
+            @JsonSerializable(explicitToJson: true)
+            TrueFalseAnswer correctAnswer)?
         trueFalse,
     TResult Function(
             String name,
@@ -1144,6 +1259,7 @@ class _$MultichoiceQuestionImpl implements MultichoiceQuestion {
             double penalty,
             bool single,
             bool shuffleAnswers,
+            @JsonSerializable(explicitToJson: true)
             List<MultiChoiceAnswer> answers,
             String correctFeedback,
             String partiallyCorrectFeedback,
@@ -1219,6 +1335,7 @@ abstract class MultichoiceQuestion implements Question {
       required final double penalty,
       required final bool single,
       required final bool shuffleAnswers,
+      @JsonSerializable(explicitToJson: true)
       required final List<MultiChoiceAnswer> answers,
       required final String correctFeedback,
       required final String partiallyCorrectFeedback,
@@ -1239,6 +1356,7 @@ abstract class MultichoiceQuestion implements Question {
   double get penalty;
   bool get single;
   bool get shuffleAnswers;
+  @JsonSerializable(explicitToJson: true)
   List<MultiChoiceAnswer> get answers;
   String get correctFeedback;
   String get partiallyCorrectFeedback;

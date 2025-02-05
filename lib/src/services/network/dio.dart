@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final dioProvider = Provider<Dio>((ref) {
   final dio = Dio(
     BaseOptions(
-      baseUrl: 'http://localhost:3000',
+      baseUrl: 'http://185.4.67.138:3000',
     ),
   );
   dio.interceptors.add(AppInterceptor());

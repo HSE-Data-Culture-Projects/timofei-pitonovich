@@ -31,6 +31,7 @@ dependencies:
   intl: any
   xml: ^6.5.0
   logger: ^2.4.0
+  sembast: ^3.8.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

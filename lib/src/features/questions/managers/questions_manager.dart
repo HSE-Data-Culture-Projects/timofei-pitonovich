@@ -1,5 +1,6 @@
 import 'package:app/src/features/questions/questions.dart';
 import 'package:app/src/services/routing/routing.dart';
+import 'package:app/src/services/storage/managers/local_storage_manager.dart';
 import 'package:flutter/cupertino.dart';
 
 class QuestionsManager {
@@ -8,6 +9,7 @@ class QuestionsManager {
   final QuestionsStateHolder _stateHolder;
   final QuestionsState _state;
   final PageController _pageController;
+  final LocaleDatabaseManager _databaseManager;
 
   QuestionsManager(
     this._navigationManager,
@@ -15,6 +17,7 @@ class QuestionsManager {
     this._stateHolder,
     this._state,
     this._pageController,
+    this._databaseManager,
   );
 
   Future<void> getQuestions(String topicId, {bool updateState = true}) async {
@@ -35,6 +38,13 @@ class QuestionsManager {
         Map<int, dynamic>.from(_state.selectedAnswers)
           ..[questionIndex] = answer;
     _stateHolder.selectAnswer(updatedSelectedAnswers);
+  }
+
+  Future<bool> isInFavorites(int questionIndex) async {
+    if (_state.questions.isEmpty) return false;
+    return await _databaseManager.isQuestionInFavorites(
+      _state.questions[questionIndex],
+    );
   }
 
   Future<void> checkAnswer(int questionIndex) async {

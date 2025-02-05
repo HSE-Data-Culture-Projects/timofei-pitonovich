@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
 
+import '../../../services/config/config.dart';
 import '../../exams/exams.dart';
 
 class MainPage extends ConsumerStatefulWidget {
@@ -59,12 +60,15 @@ class _MainPageState extends ConsumerState<MainPage> {
                 ),
               ),
               Center(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16.0),
-                  child: UniversalAssetImage(
-                    'assets/images/gigachat.png',
-                    height: 204,
-                    width: 223,
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: UniversalAssetImage(
+                      'assets/images/${ref.watch(selectedThemeNameProvider)}/dc_logo.svg',
+                      height: 100,
+                      width: 100,
+                    ),
                   ),
                 ),
               ),
@@ -127,13 +131,14 @@ class _MainPageState extends ConsumerState<MainPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: context.colorScheme.secondary,
+        backgroundColor: context.colorScheme.primary,
         onPressed: () {},
         shape: const CircleBorder(),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(100.0),
-          child: UniversalAssetImage(
-            'assets/images/gigachat.png',
+          child: Icon(
+            Icons.question_mark,
+            color: context.colorScheme.background,
           ),
         ),
       ),

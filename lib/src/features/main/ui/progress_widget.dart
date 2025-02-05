@@ -18,37 +18,41 @@ class ExamsProgressWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(statisticsProvider).when(
           loading: () => const CircularProgressIndicator(),
-          data: (data) => Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  for (int i = 0; i < 3; ++i) ...<Widget>[
-                    Expanded(
-                      child: _ProgressWidget(
-                        progress:
-                            data[state[i].id]! / state[i].topicsCount,
+          data: (data) {
+            return Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    for (int i = 0; i < 3; ++i) ...<Widget>[
+                      Expanded(
+                        child: _ProgressWidget(
+                          progress: data[state[i].id]! /
+                              (state[i].topicsCount == 0
+                                  ? 1.0.toDouble()
+                                  : state[i].topicsCount.toDouble()),
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 8),
+                      const SizedBox(width: 8),
+                    ],
                   ],
-                ],
-              ),
-              const SizedBox(height: 4),
-              Row(
-                children: <Widget>[
-                  for (int i = 0; i < 3; ++i) ...<Widget>[
-                    Expanded(
-                      child: Text(
-                        state[i].name,
-                        textAlign: TextAlign.center,
-                        style: context.fontsTheme.dcLabelLarge,
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: <Widget>[
+                    for (int i = 0; i < 3; ++i) ...<Widget>[
+                      Expanded(
+                        child: Text(
+                          state[i].name,
+                          textAlign: TextAlign.center,
+                          style: context.fontsTheme.dcLabelLarge,
+                        ),
                       ),
-                    ),
+                    ],
                   ],
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            );
+          },
           error: (e, s) => const Text('Ошибка при загрузке статистики'),
         );
   }

@@ -15,6 +15,8 @@ Future<void> main() async {
   late final ProviderContainer container;
   container = ProviderContainer(overrides: overrides);
 
+  container.read(localStorageManagerProvider);
+
   runApp(
     UncontrolledProviderScope(
       container: container,

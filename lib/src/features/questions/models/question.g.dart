@@ -28,7 +28,7 @@ Map<String, dynamic> _$$ShortAnswerQuestionImplToJson(
       'generalFeedback': instance.generalFeedback,
       'defaultGrade': instance.defaultGrade,
       'penalty': instance.penalty,
-      'answers': instance.answers,
+      'answers': instance.answers.map((e) => e.toJson()).toList(),
       'runtimeType': instance.$type,
     };
 
@@ -53,7 +53,7 @@ Map<String, dynamic> _$$TrueFalseQuestionImplToJson(
       'generalFeedback': instance.generalFeedback,
       'defaultGrade': instance.defaultGrade,
       'penalty': instance.penalty,
-      'correctAnswer': instance.correctAnswer,
+      'correctAnswer': instance.correctAnswer.toJson(),
       'runtimeType': instance.$type,
     };
 
@@ -86,7 +86,7 @@ Map<String, dynamic> _$$MultichoiceQuestionImplToJson(
       'penalty': instance.penalty,
       'single': instance.single,
       'shuffleAnswers': instance.shuffleAnswers,
-      'answers': instance.answers,
+      'answers': instance.answers.map((e) => e.toJson()).toList(),
       'correctFeedback': instance.correctFeedback,
       'partiallyCorrectFeedback': instance.partiallyCorrectFeedback,
       'incorrectFeedback': instance.incorrectFeedback,

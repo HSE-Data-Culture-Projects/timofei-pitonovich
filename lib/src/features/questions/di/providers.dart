@@ -3,6 +3,7 @@ import 'package:app/src/features/questions/services/gigachat_service.dart';
 import 'package:app/src/features/questions/services/services.dart';
 import 'package:app/src/services/network/dio.dart';
 import 'package:app/src/services/routing/providers.dart';
+import 'package:app/src/services/storage/di/providers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,6 +15,7 @@ final questionsManagerProvider =
     ref.watch(questionsStateHolderProvider(id).notifier),
     ref.watch(questionsStateHolderProvider(id)),
     ref.watch(questionsPageControllerProvider),
+    ref.watch(localStorageManagerProvider),
   );
 });
 

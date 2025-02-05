@@ -104,34 +104,34 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ],
             ),
             const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  locale.settingsPageAppLanguage,
-                  style: context.fontsTheme.dcHeadlineMedium,
-                ),
-                DropdownButton(
-                  value: ref.watch(selectedLanguageProvider),
-                  items: availableLanguages.keys
-                      .map(
-                        (key) => DropdownMenuItem(
-                          value: availableLanguages[key],
-                          child: Text(
-                            key,
-                            style: context.fontsTheme.dcBodyMedium,
-                          ),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (value) {
-                    if (value != null) {
-                      ref.read(selectedLanguageProvider.notifier).state = value;
-                    }
-                  },
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: <Widget>[
+            //     Text(
+            //       locale.settingsPageAppLanguage,
+            //       style: context.fontsTheme.dcHeadlineMedium,
+            //     ),
+            //     DropdownButton(
+            //       value: ref.watch(selectedLanguageProvider),
+            //       items: availableLanguages.keys
+            //           .map(
+            //             (key) => DropdownMenuItem(
+            //               value: availableLanguages[key],
+            //               child: Text(
+            //                 key,
+            //                 style: context.fontsTheme.dcBodyMedium,
+            //               ),
+            //             ),
+            //           )
+            //           .toList(),
+            //       onChanged: (value) {
+            //         if (value != null) {
+            //           ref.read(selectedLanguageProvider.notifier).state = value;
+            //         }
+            //       },
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),

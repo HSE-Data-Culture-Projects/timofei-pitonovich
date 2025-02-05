@@ -1,29 +1,32 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'question.freezed.dart';
-
 part 'question.g.dart';
 
 @freezed
 class Question with _$Question {
+  @JsonSerializable(explicitToJson: true)
   const factory Question.shortAnswer({
     required String name,
     required String questionText,
     required String generalFeedback,
     required double defaultGrade,
     required double penalty,
-    required List<ShortAnswer> answers,
+    @JsonSerializable(explicitToJson: true) required List<ShortAnswer> answers,
   }) = ShortAnswerQuestion;
 
+  @JsonSerializable(explicitToJson: true)
   const factory Question.trueFalse({
     required String name,
     required String questionText,
     required String generalFeedback,
     required double defaultGrade,
     required double penalty,
+    @JsonSerializable(explicitToJson: true)
     required TrueFalseAnswer correctAnswer,
   }) = TrueFalseQuestion;
 
+  @JsonSerializable(explicitToJson: true)
   const factory Question.multiChoice({
     required String name,
     required String questionText,
@@ -32,6 +35,7 @@ class Question with _$Question {
     required double penalty,
     required bool single,
     required bool shuffleAnswers,
+    @JsonSerializable(explicitToJson: true)
     required List<MultiChoiceAnswer> answers,
     required String correctFeedback,
     required String partiallyCorrectFeedback,

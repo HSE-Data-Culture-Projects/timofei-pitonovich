@@ -2,11 +2,11 @@ import 'package:app/src/features/exams/exams.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ExamsStateHolder extends StateNotifier<ExamsState> {
-  ExamsStateHolder() : super(ExamsState.loading());
+  ExamsStateHolder() : super(const ExamsState.loading());
 
   void setLoading() {
     if (!mounted) return;
-    state = ExamsState.loading();
+    state = const ExamsState.loading();
   }
 
   void setLoaded(List<Exam> exams) {
@@ -16,6 +16,6 @@ class ExamsStateHolder extends StateNotifier<ExamsState> {
 
   void setError() {
     if (!mounted) return;
-    state = ExamsState.error();
+    state = const ExamsState.error();
   }
 }

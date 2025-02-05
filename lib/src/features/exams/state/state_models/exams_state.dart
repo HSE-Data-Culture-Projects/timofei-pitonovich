@@ -5,9 +5,10 @@ part 'exams_state.freezed.dart';
 
 @freezed
 sealed class ExamsState with _$ExamsState {
-  factory ExamsState.loading() = ExamsLoadingState;
+  const factory ExamsState.loading() = ExamsLoadingState;
 
-  factory ExamsState.loaded({required List<Exam> exams}) = ExamsLoadedState;
+  const factory ExamsState.loaded({required List<Exam> exams}) =
+      ExamsLoadedState;
 
-  factory ExamsState.error() = ExamsErrorState;
+  const factory ExamsState.error() = ExamsErrorState;
 }

@@ -105,7 +105,7 @@ class __$$ExamsLoadingStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ExamsLoadingStateImpl implements ExamsLoadingState {
-  _$ExamsLoadingStateImpl();
+  const _$ExamsLoadingStateImpl();
 
   @override
   String toString() {
@@ -191,7 +191,7 @@ class _$ExamsLoadingStateImpl implements ExamsLoadingState {
 }
 
 abstract class ExamsLoadingState implements ExamsState {
-  factory ExamsLoadingState() = _$ExamsLoadingStateImpl;
+  const factory ExamsLoadingState() = _$ExamsLoadingStateImpl;
 }
 
 /// @nodoc
@@ -230,7 +230,8 @@ class __$$ExamsLoadedStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ExamsLoadedStateImpl implements ExamsLoadedState {
-  _$ExamsLoadedStateImpl({required final List<Exam> exams}) : _exams = exams;
+  const _$ExamsLoadedStateImpl({required final List<Exam> exams})
+      : _exams = exams;
 
   final List<Exam> _exams;
   @override
@@ -336,7 +337,7 @@ class _$ExamsLoadedStateImpl implements ExamsLoadedState {
 }
 
 abstract class ExamsLoadedState implements ExamsState {
-  factory ExamsLoadedState({required final List<Exam> exams}) =
+  const factory ExamsLoadedState({required final List<Exam> exams}) =
       _$ExamsLoadedStateImpl;
 
   List<Exam> get exams;
@@ -370,7 +371,7 @@ class __$$ExamsErrorStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ExamsErrorStateImpl implements ExamsErrorState {
-  _$ExamsErrorStateImpl();
+  const _$ExamsErrorStateImpl();
 
   @override
   String toString() {
@@ -456,5 +457,5 @@ class _$ExamsErrorStateImpl implements ExamsErrorState {
 }
 
 abstract class ExamsErrorState implements ExamsState {
-  factory ExamsErrorState() = _$ExamsErrorStateImpl;
+  const factory ExamsErrorState() = _$ExamsErrorStateImpl;
 }
