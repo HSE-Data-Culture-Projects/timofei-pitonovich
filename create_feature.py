@@ -3,9 +3,21 @@ import os
 def create_project_structure(base_name):
     os.makedirs(base_name, exist_ok=True)
 
-    files = [f'{base_name}.dart', 'README.md']
-    for file in files:
-        open(os.path.join(base_name, file), 'w').close()
+    # Creating base files
+    base_file_path = os.path.join(base_name, f'{base_name}.dart')
+    with open(base_file_path, 'w') as f:
+        f.write("""
+export 'di/providers.dart';
+export 'managers/managers.dart';
+export 'models/models.dart';
+export 'repositories/repositories.dart';
+export 'services/services.dart';
+export 'state/state.dart';
+export 'ui/ui.dart';
+        """.strip())
+
+    readme_path = os.path.join(base_name, 'README.md')
+    open(readme_path, 'w').close()
 
     structure = {
         'di': ['providers.dart'],
@@ -14,7 +26,10 @@ def create_project_structure(base_name):
         'repositories': ['repositories.dart'],
         'services': ['services.dart'],
         'state': {
-            'state.dart': None,
+            'state.dart': """
+export 'state_holders/state_holders.dart';
+export 'state_models/state_models.dart';
+            """.strip(),
             'state_holders': ['state_holders.dart'],
             'state_models': ['state_models.dart']
         },
@@ -33,7 +48,9 @@ def create_project_structure(base_name):
                 os.makedirs(folder_path, exist_ok=True)
                 create_substructure(folder_path, value)
             else:
-                open(os.path.join(parent_path, key), 'w').close()
+                file_path = os.path.join(parent_path, key)
+                with open(file_path, 'w') as f:
+                    f.write(value)
 
     create_substructure(base_name, structure)
     print(f"Структура проекта '{base_name}' успешно создана!")

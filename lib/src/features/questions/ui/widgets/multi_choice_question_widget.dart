@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
+
 import '../../questions.dart';
 
 class MultiChoiceQuestionWidget extends ConsumerStatefulWidget {
@@ -42,13 +44,15 @@ class _MultiChoiceQuestionWidgetState
     try {
       // Получаем текст вопроса из widget.question
       final message = widget.question.questionText;
+      final answers = widget.question.answers.map((answer) => answer.text);
 
       // Формируем тело запроса
 
       // Отправляем POST-запрос на ваш бэкенд
       final service = ref.watch(gigaChatServiceProvider);
       await service.authenticate();
-      final response = await service.generate(message);
+      final response =
+          await service.generate('$message\nВарианты ответов: $answers');
 
       final hint = response.choices.first.message.content;
       if (hint.isNotEmpty) {
@@ -127,11 +131,7 @@ class _MultiChoiceQuestionWidgetState
         ),
         const SizedBox(height: 16),
         if (_isLoading) const Center(child: CircularProgressIndicator()),
-        if (_hint != null)
-          Text(
-            _hint!,
-            style: const TextStyle(fontSize: 16),
-          ),
+        if (_hint != null) MarkdownBody(data: _hint!),
       ],
     );
   }

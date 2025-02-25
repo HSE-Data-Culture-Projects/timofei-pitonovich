@@ -112,9 +112,12 @@ class QuestionParser {
                 .findElements('text')
                 .single
                 .innerText);
-            final fraction = int.parse(answer.getAttribute('fraction')!);
+            final fraction = double.parse(answer.getAttribute('fraction')!);
             return MultiChoiceAnswer(
-                text: text, feedback: feedback, fraction: fraction);
+              text: text,
+              feedback: feedback,
+              fraction: fraction.toInt(),
+            );
           }).toList();
 
           return Question.multiChoice(

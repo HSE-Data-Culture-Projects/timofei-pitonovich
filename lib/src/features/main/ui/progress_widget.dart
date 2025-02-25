@@ -23,7 +23,7 @@ class ExamsProgressWidget extends ConsumerWidget {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    for (int i = 0; i < 3; ++i) ...<Widget>[
+                    for (int i = 0; i < state.length; ++i) ...<Widget>[
                       Expanded(
                         child: _ProgressWidget(
                           progress: data[state[i].id]! /
@@ -39,7 +39,7 @@ class ExamsProgressWidget extends ConsumerWidget {
                 const SizedBox(height: 4),
                 Row(
                   children: <Widget>[
-                    for (int i = 0; i < 3; ++i) ...<Widget>[
+                    for (int i = 0; i < state.length; ++i) ...<Widget>[
                       Expanded(
                         child: Text(
                           state[i].name,

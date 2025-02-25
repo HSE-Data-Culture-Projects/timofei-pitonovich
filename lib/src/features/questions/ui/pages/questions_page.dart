@@ -144,15 +144,22 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
                 itemBuilder: (context, index) {
                   final question = questionsState.questions[index];
                   final selectedAnswers = questionsState.selectedAnswers[index];
-                  return QuestionWidget(
-                    question: question,
-                    selectedAnswers: selectedAnswers,
-                    onAnswerSelected: (answer) {
-                      questionsManager.selectAnswer(index, answer);
-                    },
-                    onCheckAnswer: () {
-                      questionsManager.checkAnswer(index);
-                    },
+                  return SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        QuestionWidget(
+                          question: question,
+                          selectedAnswers: selectedAnswers,
+                          onAnswerSelected: (answer) {
+                            questionsManager.selectAnswer(index, answer);
+                          },
+                          onCheckAnswer: () {
+                            questionsManager.checkAnswer(index);
+                          },
+                        ),
+                        const SizedBox(height: 56),
+                      ],
+                    ),
                   );
                 },
               ),

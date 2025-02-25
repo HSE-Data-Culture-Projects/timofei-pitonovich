@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
+
 import '../../questions.dart';
 
 class ShortAnswerQuestionWidget extends ConsumerStatefulWidget {
@@ -112,11 +114,7 @@ class _ShortAnswerQuestionWidgetState
         ),
         const SizedBox(height: 16),
         if (_isLoading) const Center(child: CircularProgressIndicator()),
-        if (_hint != null)
-          Text(
-            _hint!,
-            style: const TextStyle(fontSize: 16),
-          ),
+        if (_hint != null) MarkdownBody(data: _hint!),
       ],
     );
   }
