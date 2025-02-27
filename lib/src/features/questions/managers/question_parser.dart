@@ -7,7 +7,8 @@ class QuestionParser {
     final document = XmlDocument.parse(xmlString);
     final questions = document.findAllElements('question');
 
-    return questions.map((question) {
+    final parsedQuestions = <Question>[];
+    for (final question in questions) {
       final type = question.getAttribute('type');
       final name = _removeHtmlTags(question
           .findElements('name')
@@ -45,14 +46,14 @@ class QuestionParser {
                 .innerText);
             return ShortAnswer(text: text, feedback: feedback);
           }).toList();
-          return Question.shortAnswer(
+          parsedQuestions.add(Question.shortAnswer(
             name: name,
             questionText: questionText,
             generalFeedback: generalFeedback,
             defaultGrade: defaultGrade,
             penalty: penalty,
             answers: answers,
-          );
+          ));
 
         case 'truefalse':
           final answers = question.findAllElements('answer').map((answer) {
@@ -69,14 +70,14 @@ class QuestionParser {
             return TrueFalseAnswer(isTrue: isTrue, feedback: feedback);
           }).toList();
           final correctAnswer = answers.firstWhere((answer) => answer.isTrue);
-          return Question.trueFalse(
+          parsedQuestions.add(Question.trueFalse(
             name: name,
             questionText: questionText,
             generalFeedback: generalFeedback,
             defaultGrade: defaultGrade,
             penalty: penalty,
             correctAnswer: correctAnswer,
-          );
+          ));
 
         case 'multichoice':
           final single =
@@ -120,7 +121,7 @@ class QuestionParser {
             );
           }).toList();
 
-          return Question.multiChoice(
+          parsedQuestions.add(Question.multiChoice(
             name: name,
             questionText: questionText,
             generalFeedback: generalFeedback,
@@ -132,12 +133,10 @@ class QuestionParser {
             correctFeedback: correctFeedback,
             partiallyCorrectFeedback: partiallyCorrectFeedback,
             incorrectFeedback: incorrectFeedback,
-          );
-
-        default:
-          throw Exception('Unsupported question type');
+          ));
       }
-    }).toList();
+    }
+    return parsedQuestions;
   }
 
   static String _removeHtmlTags(String text) {

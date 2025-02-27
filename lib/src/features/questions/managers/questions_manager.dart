@@ -66,8 +66,19 @@ class QuestionsManager {
                 .text ==
             selectedAnswer.text;
       } else {
-        // For multiple correct answers (not covered in the current example but should be handled)
-        // Logic to compare all selected answers with correct answers
+        // For multiple correct answers:
+        if (selectedAnswer is List) {
+          final correctAnswers =
+              question.answers.where((answer) => answer.fraction > 0).toList();
+          if (selectedAnswer.length == correctAnswers.length) {
+            isCorrect =
+                selectedAnswer.every((ans) => correctAnswers.contains(ans));
+          } else {
+            isCorrect = false;
+          }
+        } else {
+          isCorrect = false;
+        }
       }
     } else if (question is ShortAnswerQuestion) {
       isCorrect = question.answers.any(

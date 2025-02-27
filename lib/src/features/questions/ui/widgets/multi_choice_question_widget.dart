@@ -42,13 +42,9 @@ class _MultiChoiceQuestionWidgetState
     });
 
     try {
-      // Получаем текст вопроса из widget.question
       final message = widget.question.questionText;
       final answers = widget.question.answers.map((answer) => answer.text);
 
-      // Формируем тело запроса
-
-      // Отправляем POST-запрос на ваш бэкенд
       final service = ref.watch(gigaChatServiceProvider);
       await service.authenticate();
       final response =
@@ -114,7 +110,13 @@ class _MultiChoiceQuestionWidgetState
                       setState(() {
                         _selectedValues[index] = value!;
                       });
-                      widget.onAnswerSelected(answer);
+                      final selectedAnswers = <dynamic>[];
+                      for (int i = 0; i < widget.question.answers.length; i++) {
+                        if (_selectedValues[i]) {
+                          selectedAnswers.add(widget.question.answers[i]);
+                        }
+                      }
+                      widget.onAnswerSelected(selectedAnswers);
                     },
                   );
           },
