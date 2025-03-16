@@ -141,6 +141,10 @@ class QuestionParser {
 
   static String _removeHtmlTags(String text) {
     final regex = RegExp(r'<[^>]*>', multiLine: true, caseSensitive: false);
-    return text.replaceAll(regex, '').trim();
+    return text
+        .replaceAll(r'<br>', '\n\n')
+        .replaceAll(r'</span>', '</span>\n\n')
+        .replaceAll(regex, '')
+        .trim();
   }
 }

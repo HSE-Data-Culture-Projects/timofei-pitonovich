@@ -71,16 +71,16 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
           )
         ],
       ),
-      floatingActionButton: questionsState.questions.length == currentIndex + 1
-          ? Padding(
-              padding: const EdgeInsets.all(16),
-              child: DcElevatedButton(
-                text: 'Завершить тему',
-                onPressed: () {},
-              ),
-            )
-          : null,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: questionsState.questions.length == currentIndex + 1
+      //     ? Padding(
+      //         padding: const EdgeInsets.all(16),
+      //         child: DcElevatedButton(
+      //           text: 'Завершить тему',
+      //           onPressed: () {},
+      //         ),
+      //       )
+      //     : null,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(

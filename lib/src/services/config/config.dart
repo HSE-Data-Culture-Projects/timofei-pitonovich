@@ -15,7 +15,6 @@ final selectedLanguageProvider = StateProvider<Locale>(
 /// Список доступных в приложении моделей искусственного интеллекта.
 const availableAIModels = <String>[
   'Gigachat',
-  'Perplexity',
 ];
 
 final selectedAIModelProvider = StateProvider<String>((ref) => 'Gigachat');
