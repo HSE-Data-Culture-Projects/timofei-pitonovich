@@ -107,7 +107,7 @@ class LocaleDatabaseManager {
   }
 
   /// Получает список всех вопросов с ошибками.
-  Future<List<Question>> getWrongAnswerQuestions() async {
+  Future<Set<Question>> getWrongAnswerQuestions() async {
     if (_db == null) {
       throw Exception('База данных не инициализирована. Вызовите init()');
     }
@@ -115,6 +115,6 @@ class LocaleDatabaseManager {
     return recordSnapshots.map((snapshot) {
       final json = snapshot.value;
       return Question.fromJson(Map<String, dynamic>.from(json));
-    }).toList();
+    }).toSet();
   }
 }

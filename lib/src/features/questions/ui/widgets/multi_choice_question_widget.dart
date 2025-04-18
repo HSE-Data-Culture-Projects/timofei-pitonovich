@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 import '../../questions.dart';
@@ -33,6 +34,16 @@ class _MultiChoiceQuestionWidgetState
     super.initState();
     _selectedValues =
         List.generate(widget.question.answers.length, (_) => false);
+    _loadHintFromPrefs();
+  }
+
+  Future<void> _loadHintFromPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'gigachat_hint_${widget.question.name}';
+    final stored = prefs.getString(key);
+    if (stored != null) {
+      setState(() => _hint = stored);
+    }
   }
 
   Future<void> _getGigaChatHint() async {
@@ -42,32 +53,42 @@ class _MultiChoiceQuestionWidgetState
     });
 
     try {
-      final message = widget.question.questionText;
-      final answers = widget.question.answers.map((answer) => answer.text);
-
-      final service = ref.watch(gigaChatServiceProvider);
+      final prompt = _buildGigaPrompt();
+      final service = ref.read(gigaChatServiceProvider);
       await service.authenticate();
-      final response =
-          await service.generate('$message\nВарианты ответов: $answers');
+      final response = await service.generate(prompt);
 
-      final hint = response.choices.first.message.content;
-      if (hint.isNotEmpty) {
-        setState(() {
-          _hint = hint;
-          _isLoading = false;
-        });
-      } else {
-        setState(() {
-          _hint = 'Не удалось получить подсказку';
-          _isLoading = false;
-        });
-      }
+      final hint = response.choices.first.message.content.trim();
+
+      final prefs = await SharedPreferences.getInstance();
+      final key = 'gigachat_hint_${widget.question.name}';
+      await prefs.setString(key, hint);
+
+      setState(() {
+        _hint = hint.isNotEmpty ? hint : 'Не удалось получить подсказку';
+        _isLoading = false;
+      });
     } catch (e) {
       setState(() {
         _hint = 'Ошибка: $e';
         _isLoading = false;
       });
     }
+  }
+
+  String _buildGigaPrompt() {
+    final q = widget.question.questionText;
+    final choices = widget.question.answers.map((a) => a.text).join(', ');
+    final correct =
+        widget.question.answers.where((answer) => answer.fraction > 0);
+    return '''
+$q
+Варианты ответов: $choices
+Правильный ответ: $correct
+Зная, что ответ (ответы) "$correct" является правильным, опиши рассуждения 
+насчёт правильности или неправильности каждого ответа. 
+Не выдавай правильный ответ явно, но намекай на него (них).
+''';
   }
 
   @override

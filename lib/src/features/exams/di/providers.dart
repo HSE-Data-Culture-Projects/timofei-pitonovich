@@ -23,3 +23,5 @@ final examsStateHolderProvider =
     StateNotifierProvider<ExamsStateHolder, ExamsState>(
   (ref) => ExamsStateHolder(),
 );
+
+final currentExamProvider = StateProvider<String?>((ref) => null);

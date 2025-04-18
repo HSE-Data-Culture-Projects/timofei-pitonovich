@@ -1,8 +1,11 @@
-import 'package:app/src/features/favorites/di/providers.dart';
-import 'package:app/src/features/questions/questions.dart';
+import 'package:app/src/features/exams/di/providers.dart';
+import 'package:app/src/features/main/di/providers.dart';
+import 'package:app/src/services/routing/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui_kit/ui_kit.dart';
+import 'package:app/src/features/questions/questions.dart';
+import 'package:app/src/features/favorites/di/providers.dart';
 
 class QuestionsPage extends ConsumerStatefulWidget {
   const QuestionsPage({required this.topicId, super.key});
@@ -14,6 +17,9 @@ class QuestionsPage extends ConsumerStatefulWidget {
 }
 
 class _QuestionsPageState extends ConsumerState<QuestionsPage> {
+  int currentIndex = 0;
+  bool isQuestionInFavorites = false;
+
   @override
   void initState() {
     super.initState();
@@ -32,20 +38,45 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
     });
   }
 
-  int currentIndex = 0;
-  bool isQuestionInFavorites = false;
+  void _finishQuiz() {
+    final questionsState =
+        ref.read(questionsStateHolderProvider(widget.topicId));
+    final correctCount =
+        questionsState.isAnswerCorrect.values.where((ok) => ok == true).length;
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text('Тест завершён'),
+        content: Text(
+          'Вы ответили правильно на $correctCount из '
+          '${questionsState.questions.length} вопросов',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              ref.read(navigationManagerProvider).pop();
+              ref.read(navigationManagerProvider).pop();
+              ref
+                  .read(mainManagerProvider)
+                  .addPassedTopic(ref.read(currentExamProvider) ?? '');
+            },
+            child: Text('Закрыть'),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final questionsState =
         ref.watch(questionsStateHolderProvider(widget.topicId));
     final questionsManager = ref.read(questionsManagerProvider(widget.topicId));
-
     final pageController = ref.watch(questionsPageControllerProvider);
 
     return Scaffold(
       appBar: AppBar(
-        actions: <Widget>[
+        actions: [
           IconButton(
             onPressed: () async {
               final question = questionsState.questions[currentIndex];
@@ -68,24 +99,23 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
               color:
                   isQuestionInFavorites ? context.colorScheme.negative : null,
             ),
-          )
+          ),
         ],
       ),
-      // floatingActionButton: questionsState.questions.length == currentIndex + 1
-      //     ? Padding(
-      //         padding: const EdgeInsets.all(16),
-      //         child: DcElevatedButton(
-      //           text: 'Завершить тему',
-      //           onPressed: () {},
-      //         ),
-      //       )
-      //     : null,
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: currentIndex == questionsState.questions.length - 1
+          ? Padding(
+              padding: const EdgeInsets.all(16),
+              child: DcElevatedButton(
+                text: 'Завершить тему',
+                onPressed: _finishQuiz,
+              ),
+            )
+          : null,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
-          children: <Widget>[
-            // Нумерация вопросов
+          children: [
             SizedBox(
               height: 56,
               child: ListView.builder(
@@ -112,13 +142,14 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
                       width: 48,
                       decoration: BoxDecoration(
                         border: Border.all(
-                            color: index == currentIndex
-                                ? context.colorScheme.primary
-                                : questionsState.isAnswerCorrect[index] != null
-                                    ? (questionsState.isAnswerCorrect[index]!
-                                        ? Colors.green
-                                        : Colors.red)
-                                    : context.colorScheme.secondary),
+                          color: index == currentIndex
+                              ? context.colorScheme.primary
+                              : questionsState.isAnswerCorrect[index] != null
+                                  ? (questionsState.isAnswerCorrect[index]!
+                                      ? Colors.green
+                                      : Colors.red)
+                                  : context.colorScheme.secondary,
+                        ),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       padding: const EdgeInsets.all(8),

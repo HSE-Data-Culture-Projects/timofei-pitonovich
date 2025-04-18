@@ -44,8 +44,14 @@ class QuestionParser {
                 .findElements('text')
                 .single
                 .innerText);
-            return ShortAnswer(text: text, feedback: feedback);
+            final fraction = double.parse(answer.getAttribute('fraction')!);
+            return ShortAnswer(
+              text: text,
+              feedback: feedback,
+              fraction: fraction,
+            );
           }).toList();
+
           parsedQuestions.add(Question.shortAnswer(
             name: name,
             questionText: questionText,

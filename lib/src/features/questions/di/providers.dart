@@ -1,3 +1,5 @@
+import 'package:app/src/features/exams/di/providers.dart';
+import 'package:app/src/features/main/di/providers.dart';
 import 'package:app/src/features/mistakes/di/providers.dart';
 import 'package:app/src/features/questions/questions.dart';
 import 'package:app/src/features/questions/services/gigachat_service.dart';
@@ -18,6 +20,8 @@ final questionsManagerProvider =
     ref.watch(questionsPageControllerProvider),
     ref.watch(localStorageManagerProvider),
     ref.watch(mistakesManagerProvider),
+    ref.watch(mainManagerProvider),
+    ref.watch(currentExamProvider),
   );
 });
 

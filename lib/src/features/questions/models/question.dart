@@ -51,6 +51,7 @@ class ShortAnswer with _$ShortAnswer {
   const factory ShortAnswer({
     required String text,
     required String feedback,
+    @Default(0) double fraction,
   }) = _ShortAnswer;
 
   factory ShortAnswer.fromJson(Map<String, dynamic> json) =>

@@ -1378,6 +1378,7 @@ ShortAnswer _$ShortAnswerFromJson(Map<String, dynamic> json) {
 mixin _$ShortAnswer {
   String get text => throw _privateConstructorUsedError;
   String get feedback => throw _privateConstructorUsedError;
+  double get fraction => throw _privateConstructorUsedError;
 
   /// Serializes this ShortAnswer to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1395,7 +1396,7 @@ abstract class $ShortAnswerCopyWith<$Res> {
           ShortAnswer value, $Res Function(ShortAnswer) then) =
       _$ShortAnswerCopyWithImpl<$Res, ShortAnswer>;
   @useResult
-  $Res call({String text, String feedback});
+  $Res call({String text, String feedback, double fraction});
 }
 
 /// @nodoc
@@ -1415,6 +1416,7 @@ class _$ShortAnswerCopyWithImpl<$Res, $Val extends ShortAnswer>
   $Res call({
     Object? text = null,
     Object? feedback = null,
+    Object? fraction = null,
   }) {
     return _then(_value.copyWith(
       text: null == text
@@ -1425,6 +1427,10 @@ class _$ShortAnswerCopyWithImpl<$Res, $Val extends ShortAnswer>
           ? _value.feedback
           : feedback // ignore: cast_nullable_to_non_nullable
               as String,
+      fraction: null == fraction
+          ? _value.fraction
+          : fraction // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -1437,7 +1443,7 @@ abstract class _$$ShortAnswerImplCopyWith<$Res>
       __$$ShortAnswerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String text, String feedback});
+  $Res call({String text, String feedback, double fraction});
 }
 
 /// @nodoc
@@ -1455,6 +1461,7 @@ class __$$ShortAnswerImplCopyWithImpl<$Res>
   $Res call({
     Object? text = null,
     Object? feedback = null,
+    Object? fraction = null,
   }) {
     return _then(_$ShortAnswerImpl(
       text: null == text
@@ -1465,6 +1472,10 @@ class __$$ShortAnswerImplCopyWithImpl<$Res>
           ? _value.feedback
           : feedback // ignore: cast_nullable_to_non_nullable
               as String,
+      fraction: null == fraction
+          ? _value.fraction
+          : fraction // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -1472,7 +1483,8 @@ class __$$ShortAnswerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ShortAnswerImpl implements _ShortAnswer {
-  const _$ShortAnswerImpl({required this.text, required this.feedback});
+  const _$ShortAnswerImpl(
+      {required this.text, required this.feedback, this.fraction = 0});
 
   factory _$ShortAnswerImpl.fromJson(Map<String, dynamic> json) =>
       _$$ShortAnswerImplFromJson(json);
@@ -1481,10 +1493,13 @@ class _$ShortAnswerImpl implements _ShortAnswer {
   final String text;
   @override
   final String feedback;
+  @override
+  @JsonKey()
+  final double fraction;
 
   @override
   String toString() {
-    return 'ShortAnswer(text: $text, feedback: $feedback)';
+    return 'ShortAnswer(text: $text, feedback: $feedback, fraction: $fraction)';
   }
 
   @override
@@ -1494,12 +1509,14 @@ class _$ShortAnswerImpl implements _ShortAnswer {
             other is _$ShortAnswerImpl &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.feedback, feedback) ||
-                other.feedback == feedback));
+                other.feedback == feedback) &&
+            (identical(other.fraction, fraction) ||
+                other.fraction == fraction));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, text, feedback);
+  int get hashCode => Object.hash(runtimeType, text, feedback, fraction);
 
   /// Create a copy of ShortAnswer
   /// with the given fields replaced by the non-null parameter values.
@@ -1520,7 +1537,8 @@ class _$ShortAnswerImpl implements _ShortAnswer {
 abstract class _ShortAnswer implements ShortAnswer {
   const factory _ShortAnswer(
       {required final String text,
-      required final String feedback}) = _$ShortAnswerImpl;
+      required final String feedback,
+      final double fraction}) = _$ShortAnswerImpl;
 
   factory _ShortAnswer.fromJson(Map<String, dynamic> json) =
       _$ShortAnswerImpl.fromJson;
@@ -1529,6 +1547,8 @@ abstract class _ShortAnswer implements ShortAnswer {
   String get text;
   @override
   String get feedback;
+  @override
+  double get fraction;
 
   /// Create a copy of ShortAnswer
   /// with the given fields replaced by the non-null parameter values.

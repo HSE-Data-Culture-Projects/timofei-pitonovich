@@ -24,6 +24,7 @@ class ExamChoiceAlert extends ConsumerWidget {
                     child: DcElevatedButton(
                       text: e.name,
                       onPressed: () {
+                        ref.read(currentExamProvider.notifier).state = e.id;
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => TopicPage(

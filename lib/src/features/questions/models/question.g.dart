@@ -97,12 +97,14 @@ _$ShortAnswerImpl _$$ShortAnswerImplFromJson(Map<String, dynamic> json) =>
     _$ShortAnswerImpl(
       text: json['text'] as String,
       feedback: json['feedback'] as String,
+      fraction: (json['fraction'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$ShortAnswerImplToJson(_$ShortAnswerImpl instance) =>
     <String, dynamic>{
       'text': instance.text,
       'feedback': instance.feedback,
+      'fraction': instance.fraction,
     };
 
 _$TrueFalseAnswerImpl _$$TrueFalseAnswerImplFromJson(

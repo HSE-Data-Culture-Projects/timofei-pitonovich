@@ -1,3 +1,4 @@
+import 'package:app/src/features/main/main.dart';
 import 'package:app/src/features/mistakes/mistakes.dart';
 import 'package:app/src/features/questions/questions.dart';
 import 'package:app/src/services/routing/routing.dart';
@@ -12,6 +13,8 @@ class QuestionsManager {
   final PageController _pageController;
   final LocaleDatabaseManager _databaseManager;
   final MistakesManager _mistakesManager;
+  final MainManager _mainManager;
+  final String? _selectedExamId;
 
   QuestionsManager(
     this._navigationManager,
@@ -21,6 +24,8 @@ class QuestionsManager {
     this._pageController,
     this._databaseManager,
     this._mistakesManager,
+    this._mainManager,
+    this._selectedExamId,
   );
 
   Future<void> getQuestions(String topicId, {bool updateState = true}) async {
@@ -99,6 +104,7 @@ class QuestionsManager {
           onConfirm: () {
             _navigationManager.pop();
             _navigationManager.pop();
+            _mainManager.addPassedTopic(_selectedExamId ?? '');
           },
         );
       } else {

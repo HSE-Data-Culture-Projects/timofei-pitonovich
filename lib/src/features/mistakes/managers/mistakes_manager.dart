@@ -13,7 +13,7 @@ class MistakesManager {
     try {
       _stateHolder.setLoading();
       final questions = await _databaseManager.getWrongAnswerQuestions();
-      _stateHolder.setLoaded(questions);
+      _stateHolder.setLoaded(questions.toList());
     } catch (_) {
       _stateHolder.setError();
     }

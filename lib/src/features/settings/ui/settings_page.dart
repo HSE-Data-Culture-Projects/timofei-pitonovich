@@ -27,20 +27,20 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  locale.settingsPagePushNotifications,
-                  style: context.fontsTheme.dcHeadlineMedium,
-                ),
-                Switch.adaptive(
-                  value: true,
-                  onChanged: (value) {},
-                )
-              ],
-            ),
-            const SizedBox(height: 8),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: <Widget>[
+            //     Text(
+            //       locale.settingsPagePushNotifications,
+            //       style: context.fontsTheme.dcHeadlineMedium,
+            //     ),
+            //     Switch.adaptive(
+            //       value: true,
+            //       onChanged: (value) {},
+            //     )
+            //   ],
+            // ),
+            // const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

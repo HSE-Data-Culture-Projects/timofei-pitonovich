@@ -35,4 +35,10 @@ class MainManager {
     }
     return {};
   }
+
+  void addPassedTopic(String examId) {
+    final topicCount = _sharedPreferences.getInt(examId) ?? 0;
+    final newCount = topicCount + 1;
+    _sharedPreferences.setInt(examId, newCount);
+  }
 }
