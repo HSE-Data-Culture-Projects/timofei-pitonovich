@@ -137,18 +137,18 @@ class _MainPageState extends ConsumerState<MainPage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: context.colorScheme.primary,
-        onPressed: () {},
-        shape: const CircleBorder(),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(100.0),
-          child: Icon(
-            Icons.question_mark,
-            color: context.colorScheme.background,
-          ),
-        ),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: context.colorScheme.primary,
+      //   onPressed: () {},
+      //   shape: const CircleBorder(),
+      //   child: ClipRRect(
+      //     borderRadius: BorderRadius.circular(100.0),
+      //     child: Icon(
+      //       Icons.question_mark,
+      //       color: context.colorScheme.background,
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
