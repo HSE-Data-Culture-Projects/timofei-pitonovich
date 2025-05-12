@@ -23,7 +23,8 @@ class Choice with _$Choice {
   const factory Choice({
     required Message message,
     required int index,
-    @JsonKey(name: 'finish_reason') required String finishReason,
+    @JsonKey(name: 'finish_reason')
+    required String finishReason,
   }) = _Choice;
 
   factory Choice.fromJson(Map<String, dynamic> json) => _$ChoiceFromJson(json);
@@ -43,9 +44,12 @@ class Message with _$Message {
 @freezed
 class Usage with _$Usage {
   const factory Usage({
-    @JsonKey(name: 'prompt_tokens') required int promptTokens,
-    @JsonKey(name: 'completion_tokens') required int completionTokens,
-    @JsonKey(name: 'total_tokens') required int totalTokens,
+    @JsonKey(name: 'prompt_tokens')
+    required int promptTokens,
+    @JsonKey(name: 'completion_tokens')
+    required int completionTokens,
+    @JsonKey(name: 'total_tokens')
+    required int totalTokens,
   }) = _Usage;
 
   factory Usage.fromJson(Map<String, dynamic> json) => _$UsageFromJson(json);

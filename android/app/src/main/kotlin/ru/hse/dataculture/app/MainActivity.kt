@@ -1,4 +1,4 @@
-package ru.hse.dataculture.app
+package com.hse.dataculture.app
 
 import io.flutter.embedding.android.FlutterActivity
 

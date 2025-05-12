@@ -1,4 +1,4 @@
-package ru.hse.dataculture.ui_kit
+package com.hse.dataculture.ui_kit
 
 import androidx.annotation.NonNull
 

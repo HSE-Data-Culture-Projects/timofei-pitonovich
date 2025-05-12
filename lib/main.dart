@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:app/src/main_app.dart';
+import 'package:app/src/services/network/dio.dart';
 import 'package:app/src/services/storage/di/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,6 +19,8 @@ Future<void> main() async {
   container = ProviderContainer(overrides: overrides);
 
   container.read(localStorageManagerProvider);
+
+  HttpOverrides.global = DevHttpOverrides();
 
   runApp(
     UncontrolledProviderScope(
