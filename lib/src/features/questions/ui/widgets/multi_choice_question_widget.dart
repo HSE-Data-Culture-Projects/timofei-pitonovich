@@ -79,8 +79,9 @@ class _MultiChoiceQuestionWidgetState
   String _buildGigaPrompt() {
     final q = widget.question.questionText;
     final choices = widget.question.answers.map((a) => a.text).join(', ');
-    final correct =
-        widget.question.answers.where((answer) => answer.fraction > 0);
+    final correct = widget.question.answers
+        .where((answer) => answer.fraction > 0)
+        .map((a) => a.text);
     return '''
 $q
 Варианты ответов: $choices

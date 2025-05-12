@@ -46,7 +46,7 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('Тест завершён'),
+        title: const Text('Тест завершён'),
         content: Text(
           'Вы ответили правильно на $correctCount из '
           '${questionsState.questions.length} вопросов',
@@ -60,7 +60,7 @@ class _QuestionsPageState extends ConsumerState<QuestionsPage> {
                   .read(mainManagerProvider)
                   .addPassedTopic(ref.read(currentExamProvider) ?? '');
             },
-            child: Text('Закрыть'),
+            child: const Text('Закрыть'),
           ),
         ],
       ),

@@ -80,9 +80,11 @@ class _ShortAnswerQuestionWidgetState
   String _buildGigaPrompt() {
     final q = widget.question.questionText;
     final answer = _controller.text.trim();
-    final correct = widget.question.answers.where(
-      (answer) => answer.fraction > 0,
-    );
+    final correct = widget.question.answers
+        .where(
+          (answer) => answer.fraction > 0,
+        )
+        .map((answer) => answer.text);
     return '''
 $q
 Правильный ответ: $correct
