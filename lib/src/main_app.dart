@@ -25,6 +25,7 @@ class MainApp extends ConsumerWidget {
         const Locale('en'),
       },
       routerConfig: router,
+      debugShowCheckedModeBanner: false,
       theme: ref.watch(selectedThemeProvider),
     );
   }
